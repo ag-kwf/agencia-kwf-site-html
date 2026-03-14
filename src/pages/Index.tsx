@@ -32,7 +32,7 @@ function Navbar() {
       
       <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 shrink-0">
-          <span className="text-foreground font-bold text-lg tracking-tight">KWF</span>
+          <span className="text-gold font-bold text-lg tracking-tight">KWF</span>
           <span className="text-muted-foreground text-[11px] font-medium uppercase tracking-[0.14em] hidden sm:inline">
             | Sistemas de Receita
           </span>
