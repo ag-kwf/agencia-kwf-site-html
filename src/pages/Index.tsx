@@ -200,7 +200,7 @@ function Problems() {
           className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-8 md:mb-10 text-center max-w-[700px] mx-auto"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Três problemas que travam o crescimento de 7 em cada 10 empresas.
+          Três problemas que <span className="text-gold">travam o crescimento</span> de 7 em cada 10 empresas.
         </motion.h2>
 
         <div className="space-y-4">
