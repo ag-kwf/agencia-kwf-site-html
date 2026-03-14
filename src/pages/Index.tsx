@@ -300,7 +300,7 @@ function SocialProof() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Quem já confiou na Agência KWF.
+          Quem já confiou na Agência KWF
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] text-center mb-8">
           Atendemos grandes Empresas Tradicionais e do Digital
