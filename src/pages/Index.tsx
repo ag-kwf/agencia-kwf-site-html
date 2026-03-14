@@ -500,7 +500,7 @@ function HowItWorks() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Do Pré-Diagnóstico ao Sistema de Aquisição KWF implementado
+          Do Pré-Diagnóstico ao <span className="text-gold">Sistema de Aquisição KWF</span> implementado
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8">
           Você não precisa entender de marketing, só precisa ter clareza e ver resultado.
