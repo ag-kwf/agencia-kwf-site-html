@@ -356,7 +356,7 @@ function BeforeAfter() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-2"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Enquanto você ainda sofre para adivinhar...
+          Enquanto você ainda sofre para <span className="text-gold">adivinhar</span>...
         </motion.h2>
         <motion.p
           variants={fadeUp}
