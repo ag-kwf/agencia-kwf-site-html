@@ -599,7 +599,7 @@ function DiagnosticForm() {
             className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 max-w-[700px] mx-auto"
             style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
             
-            Descubra em 10 minutos onde pode estar vazando dinheiro da sua operação de aquisição e Marketing.
+            Descubra em 10 minutos onde pode estar <span className="text-gold">vazando dinheiro</span> da sua operação de aquisição e Marketing.
           </h2>
           <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] max-w-[540px] mx-auto">
             Preencha o diagnóstico e receba uma análise completa e possibilidades de melhorias.
