@@ -260,7 +260,7 @@ function LogoCarousel() {
   const logos = Array.from({ length: 8 }, (_, i) => i + 1);
 
   const renderRow = (ref: React.RefObject<HTMLDivElement | null>) =>
-  <div ref={ref} className="flex overflow-hidden gap-[12px] px-0 mx-[80px]" style={{ scrollbarWidth: "none" }}>
+  <div ref={ref} className="flex overflow-hidden gap-[12px] px-0 mx-[40px]" style={{ scrollbarWidth: "none" }}>
       {[...logos, ...logos].map((n, idx) =>
     <div
       key={idx}
