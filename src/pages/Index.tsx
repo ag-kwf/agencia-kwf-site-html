@@ -1,6 +1,6 @@
 import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,14 +23,14 @@ function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 h-[68px] flex items-center"
+      className="fixed top-0 left-0 right-0 z-50 h-[60px] md:h-[68px] flex items-center"
       style={{
         background: "rgba(15,15,15,0.97)",
         backdropFilter: "blur(20px)",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
       }}
     >
-      <div className="w-full max-w-[1100px] mx-auto px-6 md:px-10 flex items-center justify-between">
+      <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 shrink-0">
           <span className="text-foreground font-bold text-lg tracking-tight">KWF</span>
           <span className="text-muted-foreground text-[11px] font-medium uppercase tracking-[0.14em] hidden sm:inline">
@@ -40,11 +40,7 @@ function Navbar() {
 
         <div className="hidden md:flex items-center gap-7">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-muted-foreground text-sm hover:text-foreground transition-colors"
-            >
+            <a key={l.href} href={l.href} className="text-muted-foreground text-sm hover:text-foreground transition-colors">
               {l.label}
             </a>
           ))}
@@ -54,17 +50,10 @@ function Navbar() {
           <a
             href="#diagnostico"
             className="hidden md:inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-5 py-2.5 hover:bg-green-hover transition-all"
-            style={{ boxShadow: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
-            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
           >
             Pré-Diagnóstico Estratégico
           </a>
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-foreground"
-            aria-label="Menu"
-          >
+          <button onClick={() => setOpen(!open)} className="md:hidden text-foreground" aria-label="Menu">
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -72,16 +61,11 @@ function Navbar() {
 
       {open && (
         <div
-          className="absolute top-[68px] left-0 right-0 md:hidden flex flex-col gap-1 p-4"
+          className="absolute top-[60px] md:top-[68px] left-0 right-0 md:hidden flex flex-col gap-1 p-4"
           style={{ background: "rgba(15,15,15,0.98)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
         >
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="text-muted-foreground text-sm py-3 px-2 hover:text-foreground transition-colors"
-            >
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-muted-foreground text-sm py-3 px-2 hover:text-foreground transition-colors">
               {l.label}
             </a>
           ))}
@@ -101,57 +85,55 @@ function Navbar() {
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="pt-[120px] pb-24 md:pb-[96px] px-6 md:px-10">
+    <section className="pt-[88px] md:pt-[100px] pb-8 md:pb-12 px-5 md:px-10">
       <motion.div
-        className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12"
+        className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={stagger}
       >
-        {/* Left: image placeholder */}
-        <motion.div variants={fadeUp} className="w-full md:w-1/2 order-2 md:order-1">
-          <GlassCard className="h-[300px] md:h-[420px] flex items-center justify-center">
-            {/* TODO: substituir por imagem real */}
-            <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
-          </GlassCard>
-        </motion.div>
-
-        {/* Right: text content */}
-        <div className="w-full md:w-1/2 order-1 md:order-2 text-center md:text-right">
-          <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
+        {/* Left: text content */}
+        <div className="w-full md:w-1/2 order-1 text-left">
+          <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3">
             Sistema de aquisição e receita previsível
           </motion.p>
 
           <motion.h1
             variants={fadeUp}
-            className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-5"
-            style={{ fontSize: "clamp(34px, 5vw, 58px)" }}
+            className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4"
+            style={{ fontSize: "clamp(26px, 4vw, 44px)", textWrap: "balance" }}
           >
             Transforme seu marketing em um sistema de aquisição e{" "}
             <span className="text-gold">receita previsível</span>{" "}
-            com metodologia, processo e inteligência em cada etapa da captação ao fechamento
+            com metodologia, processo e inteligência em cada etapa
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="text-muted-foreground text-[15px] md:text-base leading-[1.7] mb-8"
+            className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-6"
+            style={{ textWrap: "balance" }}
           >
             O que custa caro não é investir em marketing, é crescer sem sistema, sem clareza e sem saber onde o dinheiro está vazando.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex justify-center md:justify-end">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3">
             <a
               href="#diagnostico"
-              className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.05em] px-7 md:px-9 py-4 hover:bg-green-hover transition-all"
-              style={{ boxShadow: "none" }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+              className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-7 py-3.5 hover:bg-green-hover transition-all"
             >
               Quero um Pré-diagnóstico
             </a>
           </motion.div>
         </div>
+
+        {/* Right: image placeholder */}
+        <motion.div variants={fadeUp} className="w-full md:w-1/2 order-2">
+          <GlassCard className="h-[220px] md:h-[360px] flex items-center justify-center">
+            {/* TODO: substituir por imagem real */}
+            <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
+          </GlassCard>
+        </motion.div>
       </motion.div>
     </section>
   );
@@ -161,19 +143,19 @@ function Hero() {
 function GlassCard({ children, className = "", hoverGold = false }: { children: React.ReactNode; className?: string; hoverGold?: boolean }) {
   return (
     <div
-      className={`rounded-xl p-6 transition-all duration-300 ${className}`}
+      className={`rounded-xl p-5 md:p-6 transition-all duration-300 ${className}`}
       style={{
         background: "rgba(255,255,255,0.06)",
         backdropFilter: "blur(20px)",
         border: "1px solid rgba(255,255,255,0.08)",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget.style.background = "rgba(255,255,255,0.10)");
-        (e.currentTarget.style.borderColor = hoverGold ? "rgba(205,160,102,0.30)" : "rgba(255,255,255,0.14)");
+        e.currentTarget.style.background = "rgba(255,255,255,0.10)";
+        e.currentTarget.style.borderColor = hoverGold ? "rgba(205,160,102,0.30)" : "rgba(255,255,255,0.14)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget.style.background = "rgba(255,255,255,0.06)");
-        (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)");
+        e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+        e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
       }}
     >
       {children}
@@ -202,7 +184,7 @@ function Problems() {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -210,40 +192,35 @@ function Problems() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3 text-center">
           Caso se identifique, você está no lugar certo
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-12 text-center max-w-[700px] mx-auto"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-8 md:mb-10 text-center max-w-[700px] mx-auto"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
-          Três problemas que travam o crescimento{" "}
-          <br className="hidden md:block" />
-          de 7 em cada 10 empresas.
+          Três problemas que travam o crescimento de 7 em cada 10 empresas.
         </motion.h2>
 
-        <div className="space-y-5">
+        <div className="space-y-4">
           {cards.map((c, i) => {
             const isReversed = i % 2 === 1;
             return (
               <motion.div key={c.title} variants={fadeUp}>
                 <GlassCard hoverGold>
-                  <div className={`flex flex-col md:flex-row gap-6 items-center ${isReversed ? "md:flex-row-reverse" : ""}`}>
-                    {/* Text */}
+                  <div className={`flex flex-col md:flex-row gap-5 items-center ${isReversed ? "md:flex-row-reverse" : ""}`}>
                     <div className="w-full md:w-1/2">
-                      <div className="w-7 h-0.5 bg-gold rounded mb-4" />
-                      <h3 className="text-foreground text-lg font-bold tracking-[-0.01em] mb-2">{c.title}</h3>
-                      <p className="text-muted-foreground text-[15px] leading-[1.7] mb-3">{c.body}</p>
+                      <div className="w-7 h-0.5 bg-gold rounded mb-3" />
+                      <h3 className="text-foreground text-base md:text-lg font-bold tracking-[-0.01em] mb-2">{c.title}</h3>
+                      <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-2">{c.body}</p>
                       <p className="text-gold text-xs">{c.result}</p>
                     </div>
-                    {/* Image placeholder */}
                     <div className="w-full md:w-1/2">
                       <div
-                        className="rounded-lg h-[180px] flex items-center justify-center"
+                        className="rounded-lg h-[140px] md:h-[180px] flex items-center justify-center"
                         style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                       >
-                        {/* TODO: substituir por imagem real */}
                         <span className="text-muted-foreground text-xs opacity-40">Imagem</span>
                       </div>
                     </div>
@@ -283,25 +260,24 @@ function LogoCarousel() {
   const logos = Array.from({ length: 8 }, (_, i) => i + 1);
 
   const renderRow = (ref: React.RefObject<HTMLDivElement | null>) => (
-    <div ref={ref} className="flex gap-4 overflow-hidden" style={{ scrollbarWidth: "none" }}>
+    <div ref={ref} className="flex gap-3 overflow-hidden" style={{ scrollbarWidth: "none" }}>
       {[...logos, ...logos].map((n, idx) => (
         <div
           key={idx}
-          className="shrink-0 w-[100px] h-[100px] rounded-full flex items-center justify-center transition-all duration-300"
+          className="shrink-0 w-[80px] h-[80px] md:w-[90px] md:h-[90px] rounded-full flex items-center justify-center transition-all duration-300"
           style={{
             background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          {/* TODO: substituir por logos reais */}
-          <span className="text-muted-foreground text-[10px] opacity-40">Logo {n}</span>
+          <span className="text-muted-foreground text-[9px] opacity-40">Logo {n}</span>
         </div>
       ))}
     </div>
   );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {renderRow(scrollRef1)}
       {renderRow(scrollRef2)}
     </div>
@@ -311,7 +287,7 @@ function LogoCarousel() {
 /* ─── PROVA SOCIAL ─── */
 function SocialProof() {
   return (
-    <section className="py-16 md:py-24 px-6 md:px-10">
+    <section className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -321,26 +297,23 @@ function SocialProof() {
       >
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 text-center"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Quem já confiou na Agência KWF.
         </motion.h2>
-        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] text-center mb-12">
+        <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] text-center mb-8">
           Atendemos grandes Empresas Tradicionais e do Digital
         </motion.p>
 
-        <motion.div variants={fadeUp} className="mb-12">
+        <motion.div variants={fadeUp} className="mb-8">
           <LogoCarousel />
         </motion.div>
 
         <motion.div variants={fadeUp} className="text-center">
           <a
             href="#diagnostico"
-            className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-9 py-4 hover:bg-green-hover transition-all"
-            style={{ boxShadow: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
-            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+            className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-8 py-3.5 hover:bg-green-hover transition-all"
           >
             Quero meu pré-diagnóstico
           </a>
@@ -370,7 +343,7 @@ function BeforeAfter() {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
         className="max-w-[1000px] mx-auto"
         initial="hidden"
@@ -381,32 +354,33 @@ function BeforeAfter() {
         <motion.h2
           variants={fadeUp}
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-2"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Enquanto você ainda sofre para adivinhar...
         </motion.h2>
         <motion.p
           variants={fadeUp}
-          className="text-muted-foreground text-[15px] leading-[1.7] text-center mb-12"
+          className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] text-center mb-8"
+          style={{ textWrap: "balance" }}
         >
           o faturamento que poderia estar no seu bolso está escorrendo.
         </motion.p>
 
-        <div className="grid md:grid-cols-[4fr_5fr] gap-4 md:gap-5">
+        <div className="grid md:grid-cols-[4fr_5fr] gap-4">
           <motion.div
             variants={fadeUp}
-            className="rounded-xl p-6"
+            className="rounded-xl p-5 md:p-6"
             style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.18)" }}
           >
             <span
-              className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-5"
+              className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-4"
               style={{ background: "rgba(239,68,68,0.12)", color: "#EF4444" }}
             >
               Como é hoje
             </span>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {before.map((t) => (
-                <li key={t} className="flex items-start gap-2.5 text-muted-foreground text-[14px] leading-[1.6]">
+                <li key={t} className="flex items-start gap-2.5 text-muted-foreground text-[13px] md:text-[14px] leading-[1.6]">
                   <span className="text-destructive mt-0.5 shrink-0">✕</span>
                   {t}
                 </li>
@@ -416,18 +390,18 @@ function BeforeAfter() {
 
           <motion.div
             variants={fadeUp}
-            className="rounded-xl p-6"
+            className="rounded-xl p-5 md:p-6"
             style={{ background: "rgba(19,150,87,0.06)", border: "1px solid rgba(19,150,87,0.22)" }}
           >
             <span
-              className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-5"
+              className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-4"
               style={{ background: "rgba(19,150,87,0.14)", color: "#139657" }}
             >
               Com o sistema de aquisição da KWF
             </span>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {after.map((t) => (
-                <li key={t} className="flex items-start gap-2.5 text-foreground text-[14px] leading-[1.6]">
+                <li key={t} className="flex items-start gap-2.5 text-foreground text-[13px] md:text-[14px] leading-[1.6]">
                   <span className="text-accent mt-0.5 shrink-0">✓</span>
                   {t}
                 </li>
@@ -443,7 +417,7 @@ function BeforeAfter() {
 /* ─── RESULTADOS / DASHBOARD ─── */
 function Results() {
   return (
-    <section id="resultados" className="py-16 md:py-24 px-6 md:px-10">
+    <section id="resultados" className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -451,27 +425,26 @@ function Results() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3 text-center">
           Resultados reais
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 text-center"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Pare de ficar se perguntando "isso tá funcionando?"
         </motion.h2>
-        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] mb-12 text-center">
+        <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8 text-center" style={{ textWrap: "balance" }}>
           Abre o dashboard. Veja todo o fluxo. Tome decisões acertadas.
         </motion.p>
 
         <motion.div variants={fadeUp}>
           <GlassCard className="max-w-[900px] mx-auto">
             <div
-              className="rounded-lg h-[300px] md:h-[420px] flex items-center justify-center"
+              className="rounded-lg h-[200px] md:h-[380px] flex items-center justify-center"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
             >
-              {/* TODO: substituir por imagem real do dashboard */}
               <span className="text-muted-foreground text-sm opacity-40">Imagem do Dashboard</span>
             </div>
           </GlassCard>
@@ -511,7 +484,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="como-funciona" className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section id="como-funciona" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
         className="max-w-[900px] mx-auto"
         initial="hidden"
@@ -519,38 +492,35 @@ function HowItWorks() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3">
           Como funciona
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Do Pré-Diagnóstico ao Sistema de Aquisição KWF implementado
         </motion.h2>
-        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] mb-12">
+        <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8">
           Você não precisa entender de marketing, só precisa ter clareza e ver resultado.
         </motion.p>
 
         <div className="space-y-0">
           {steps.map((s, i) => (
-            <motion.div key={s.num} variants={fadeUp} className="flex gap-5 md:gap-7">
-              {/* Left: image placeholder */}
-              <div className="hidden md:block w-[200px] shrink-0">
+            <motion.div key={s.num} variants={fadeUp} className="flex gap-4 md:gap-7">
+              <div className="hidden md:block w-[180px] shrink-0">
                 <div
-                  className="rounded-lg h-[120px] flex items-center justify-center"
+                  className="rounded-lg h-[110px] flex items-center justify-center"
                   style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                 >
-                  {/* TODO: substituir por imagem real */}
                   <span className="text-muted-foreground text-[10px] opacity-40">Imagem</span>
                 </div>
               </div>
 
-              {/* Center: circle + connector */}
               <div className="flex flex-col items-center">
                 <div
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-gold text-[13px] font-bold shrink-0"
+                  className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-gold text-[13px] font-bold shrink-0"
                   style={{ background: "rgba(205,160,102,0.12)", border: "1px solid rgba(205,160,102,0.30)" }}
                 >
                   {s.num}
@@ -560,11 +530,10 @@ function HowItWorks() {
                 )}
               </div>
 
-              {/* Right: content */}
-              <div className={i < steps.length - 1 ? "pb-10 flex-1" : "pb-0 flex-1"}>
-                <h3 className="text-foreground text-lg font-bold tracking-[-0.01em] mb-1">{s.title}</h3>
-                <p className="text-gold text-[13px] mb-2">{s.subtitle}</p>
-                <p className="text-muted-foreground text-[15px] leading-[1.7]">{s.body}</p>
+              <div className={i < steps.length - 1 ? "pb-8 flex-1" : "pb-0 flex-1"}>
+                <h3 className="text-foreground text-base md:text-lg font-bold tracking-[-0.01em] mb-1">{s.title}</h3>
+                <p className="text-gold text-[13px] mb-1.5">{s.subtitle}</p>
+                <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7]">{s.body}</p>
               </div>
             </motion.div>
           ))}
@@ -583,7 +552,6 @@ function DiagnosticForm() {
     const msg = encodeURIComponent(
       `Olá! Quero agendar meu Pré-Diagnóstico Estratégico.\n\nNome: ${form.name}\nWhatsApp: ${form.whatsapp}\nEmail: ${form.email}\nSegmento: ${form.segment}`
     );
-    // TODO: substituir pelo número real
     window.open(`https://wa.me/SEU_NUMERO?text=${msg}`, "_blank");
   };
 
@@ -592,7 +560,7 @@ function DiagnosticForm() {
     border: "1px solid rgba(255,255,255,0.10)",
     borderRadius: "8px",
     color: "#F5F5F5",
-    padding: "14px 16px",
+    padding: "12px 14px",
     fontSize: "14px",
     outline: "none",
     width: "100%",
@@ -603,7 +571,7 @@ function DiagnosticForm() {
     label: string; placeholder: string; value: string; onChange: (v: string) => void; type?: string;
   }) => (
     <div>
-      <label className="block text-muted-foreground text-xs uppercase tracking-[0.14em] mb-2 font-medium">{label}</label>
+      <label className="block text-muted-foreground text-xs uppercase tracking-[0.14em] mb-1.5 font-medium">{label}</label>
       <input
         type={type}
         placeholder={placeholder}
@@ -617,7 +585,7 @@ function DiagnosticForm() {
   );
 
   return (
-    <section id="diagnostico" className="py-16 md:py-24 px-6 md:px-10">
+    <section id="diagnostico" className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -625,25 +593,25 @@ function DiagnosticForm() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.div variants={fadeUp} className="text-center mb-12">
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">Próximo passo</p>
+        <motion.div variants={fadeUp} className="text-center mb-8">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3">Próximo passo</p>
           <h2
-            className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 max-w-[700px] mx-auto"
-            style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+            className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 max-w-[700px] mx-auto"
+            style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
           >
             Descubra em 10 minutos onde pode estar vazando dinheiro da sua operação de aquisição e Marketing.
           </h2>
-          <p className="text-muted-foreground text-[15px] leading-[1.7] max-w-[540px] mx-auto">
+          <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] max-w-[540px] mx-auto">
             Preencha o diagnóstico e receba uma análise completa e possibilidades de melhorias.
           </p>
         </motion.div>
 
         <motion.div variants={fadeUp}>
           <GlassCard className="max-w-[600px] mx-auto">
-            <p className="text-foreground text-base font-semibold mb-6 text-center">
+            <p className="text-foreground text-[15px] font-semibold mb-5 text-center">
               Preencha as informações abaixo para iniciar o diagnóstico
             </p>
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <InputField label="Nome" placeholder="Ex: João Silva" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
               <InputField label="WhatsApp" placeholder="(00) 00000-0000" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
               <InputField label="Email" placeholder="seu@email.com" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" />
@@ -651,15 +619,12 @@ function DiagnosticForm() {
 
               <button
                 type="submit"
-                className="w-full rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] py-4 hover:bg-green-hover transition-all"
-                style={{ boxShadow: "none" }}
-                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
-                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+                className="w-full rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] py-3.5 hover:bg-green-hover transition-all"
               >
                 Agendar meu pré-diagnóstico estratégico
               </button>
             </form>
-            <p className="text-muted-foreground text-xs text-center mt-5">
+            <p className="text-muted-foreground text-xs text-center mt-4">
               Você sai com clareza de onde estão os gaps — independente de qualquer decisão de contratação.
             </p>
           </GlassCard>
@@ -697,7 +662,7 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section id="faq" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
         className="max-w-[720px] mx-auto"
         initial="hidden"
@@ -705,13 +670,13 @@ function FAQ() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3 text-center">
           Dúvidas
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12 text-center"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Dúvidas Frequentes
         </motion.h2>
@@ -727,8 +692,8 @@ function FAQ() {
                 }}
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <div className="flex items-center justify-between p-5 gap-4">
-                  <h3 className="text-foreground text-[15px] font-semibold">{item.q}</h3>
+                <div className="flex items-center justify-between p-4 md:p-5 gap-3">
+                  <h3 className="text-foreground text-[14px] md:text-[15px] font-semibold">{item.q}</h3>
                   <ChevronDown
                     size={18}
                     className={`text-muted-foreground shrink-0 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`}
@@ -741,7 +706,7 @@ function FAQ() {
                     opacity: openIndex === i ? 1 : 0,
                   }}
                 >
-                  <p className="text-muted-foreground text-sm leading-[1.7] px-5 pb-5">{item.a}</p>
+                  <p className="text-muted-foreground text-[13px] md:text-sm leading-[1.7] px-4 md:px-5 pb-4 md:pb-5">{item.a}</p>
                 </div>
               </div>
             </motion.div>
@@ -752,16 +717,29 @@ function FAQ() {
   );
 }
 
-/* ─── SOBRE ─── */
+/* ─── SOBRE (com carrossel de fotos) ─── */
 function About() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const photos = [
+    "Foto equipe 1",
+    "Foto equipe 2",
+    "Reunião estratégica",
+    "Dashboard real",
+    "Escritório KWF",
+    "Evento",
+  ];
+
   const metrics = [
     { value: "+R$20M", label: "investidos em campanhas" },
     { value: "+60mil", label: "vendas realizadas" },
     { value: "+R$80M", label: "de faturamento no digital" },
   ];
 
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % photos.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + photos.length) % photos.length);
+
   return (
-    <section id="sobre" className="py-16 md:py-24 px-6 md:px-10">
+    <section id="sobre" className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -771,51 +749,84 @@ function About() {
       >
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12 text-center"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
+          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Conheça a Agência KWF.
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-          {/* Photos carousel placeholder */}
-          <motion.div variants={fadeUp} className="space-y-4">
-            {/* TODO: substituir por carrossel real de fotos */}
-            <div className="grid grid-cols-2 gap-4">
-              <GlassCard className="h-[160px] flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Foto 1</span>
-              </GlassCard>
-              <GlassCard className="h-[160px] flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Foto 2</span>
-              </GlassCard>
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+          {/* Photos carousel */}
+          <motion.div variants={fadeUp} className="relative">
+            <div className="overflow-hidden rounded-xl">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {photos.map((photo, i) => (
+                  <div
+                    key={i}
+                    className="w-full shrink-0 h-[220px] md:h-[300px] rounded-xl flex items-center justify-center"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    {/* TODO: substituir por fotos reais */}
+                    <span className="text-muted-foreground text-xs opacity-40">{photo}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <GlassCard className="h-[160px] flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Foto 3</span>
-              </GlassCard>
-              <GlassCard className="h-[160px] flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Foto 4</span>
-              </GlassCard>
+
+            {/* Carousel controls */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-foreground transition-colors"
+              style={{ background: "rgba(15,15,15,0.8)", border: "1px solid rgba(255,255,255,0.15)" }}
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-foreground transition-colors"
+              style={{ background: "rgba(15,15,15,0.8)", border: "1px solid rgba(255,255,255,0.15)" }}
+            >
+              <ChevronRight size={16} />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-1.5 mt-3">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentSlide(i)}
+                  className="w-2 h-2 rounded-full transition-all"
+                  style={{
+                    background: i === currentSlide ? "#CDA066" : "rgba(255,255,255,0.15)",
+                  }}
+                />
+              ))}
             </div>
           </motion.div>
 
           {/* Text */}
           <motion.div variants={fadeUp}>
-            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-6">
+            <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-4">
               A Agência KWF trabalha com empresas tradicionais e digitais, onde percebemos um padrão: negócios sólidos, com produto bom estão perdendo receita e oportunidade por falta de sistema de aquisição.
             </p>
-            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-6">
+            <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-4">
               Por isso, pegamos as estratégias de aquisição mais validadas do mercado digital e as instalamos dentro de negócios tradicionais com um método claro.
             </p>
-            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-10">
+            <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8">
               O Sistema KWF combina estratégia, funil de aquisição, automações, IA e gestão de dados desenhada para gerar o máximo de previsibilidade de resultados.
             </p>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               {metrics.map((m) => (
                 <div key={m.label}>
-                  <p className="text-gold text-[28px] md:text-[32px] font-bold leading-none mb-1">{m.value}</p>
-                  <p className="text-muted-foreground text-[12px]">{m.label}</p>
+                  <p className="text-gold text-[24px] md:text-[28px] font-bold leading-none mb-1">{m.value}</p>
+                  <p className="text-muted-foreground text-[11px] md:text-[12px]">{m.label}</p>
                 </div>
               ))}
             </div>
@@ -829,21 +840,21 @@ function About() {
 /* ─── FOOTER ─── */
 function Footer() {
   return (
-    <footer className="px-6 md:px-10 pt-12 pb-8" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+    <footer className="px-5 md:px-10 pt-8 pb-6" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="max-w-[1100px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between gap-8 mb-8">
+        <div className="flex flex-col md:flex-row justify-between gap-6 mb-6">
           <div>
-            <p className="text-foreground text-xl font-bold mb-2">KWF</p>
-            <p className="text-muted-foreground text-sm leading-[1.7] max-w-[360px]">
+            <p className="text-foreground text-xl font-bold mb-1.5">KWF</p>
+            <p className="text-muted-foreground text-[13px] leading-[1.7] max-w-[360px]">
               Sistemas de aquisição e receita previsível para empresas de serviço.
             </p>
             <p className="text-muted-foreground text-xs italic opacity-50 mt-1">Know What to Focus.</p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
             <div>
-              <p className="text-foreground text-sm font-semibold mb-3">Navegação</p>
-              <div className="flex flex-col gap-2">
+              <p className="text-foreground text-sm font-semibold mb-2">Navegação</p>
+              <div className="flex flex-col gap-1.5">
                 {["Como funciona", "Resultados", "Sobre", "Dúvidas"].map((l) => (
                   <a
                     key={l}
@@ -856,15 +867,14 @@ function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-foreground text-sm font-semibold mb-3">Ação</p>
+              <p className="text-foreground text-sm font-semibold mb-2">Ação</p>
               <a href="#diagnostico" className="text-accent text-sm font-semibold hover:underline">
                 Pré-Diagnóstico Estratégico →
               </a>
             </div>
             <div>
-              <p className="text-foreground text-sm font-semibold mb-3">Legal</p>
-              <div className="flex flex-col gap-2">
-                {/* TODO: substituir por links reais */}
+              <p className="text-foreground text-sm font-semibold mb-2">Legal</p>
+              <div className="flex flex-col gap-1.5">
                 <a href="#" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Política de Privacidade
                 </a>
@@ -876,7 +886,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
           <p className="text-muted-foreground text-xs opacity-50">
             © 2026 Agência KWF. Todos os direitos reservados.
           </p>
