@@ -32,7 +32,7 @@ function Navbar() {
       
       <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 shrink-0">
-          <span className="text-foreground font-bold text-lg tracking-tight">KWF</span>
+          <span className="text-gold font-bold text-lg tracking-tight">KWF</span>
           <span className="text-muted-foreground text-[11px] font-medium uppercase tracking-[0.14em] hidden sm:inline">
             | Sistemas de Receita
           </span>
@@ -106,7 +106,7 @@ function Hero() {
             
             Transforme seu marketing em um sistema de aquisição e{" "}
             <span className="text-gold">receita previsível</span>{" "}
-            com metodologia, processo e inteligência em cada etapa
+            com metodologia, processo e <span className="text-gold">inteligência</span> em cada etapa
           </motion.h1>
 
           <motion.p
@@ -200,7 +200,7 @@ function Problems() {
           className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-8 md:mb-10 text-center max-w-[700px] mx-auto"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Três problemas que travam o crescimento de 7 em cada 10 empresas.
+          Três problemas que <span className="text-gold">travam o crescimento</span> de 7 em cada 10 empresas.
         </motion.h2>
 
         <div className="space-y-4">
@@ -300,7 +300,7 @@ function SocialProof() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Quem já confiou na Agência KWF
+          Quem já confiou na <span className="text-gold">Agência KWF</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] text-center mb-8">
           Atendemos grandes Empresas Tradicionais e do Digital
@@ -356,7 +356,7 @@ function BeforeAfter() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-2"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Enquanto você ainda sofre para adivinhar...
+          Enquanto você ainda sofre para <span className="text-gold">adivinhar</span>...
         </motion.h2>
         <motion.p
           variants={fadeUp}
@@ -433,7 +433,7 @@ function Results() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Pare de ficar se perguntando "isso tá funcionando?"
+          Pare de ficar se perguntando <span className="text-gold">"isso tá funcionando?"</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8 text-center" style={{ textWrap: "balance" }}>
           Abre o dashboard. Veja todo o fluxo. Tome decisões acertadas.
@@ -500,7 +500,7 @@ function HowItWorks() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Do Pré-Diagnóstico ao Sistema de Aquisição KWF implementado
+          Do Pré-Diagnóstico ao <span className="text-gold">Sistema de Aquisição KWF</span> implementado
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8">
           Você não precisa entender de marketing, só precisa ter clareza e ver resultado.
@@ -599,7 +599,7 @@ function DiagnosticForm() {
             className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 max-w-[700px] mx-auto"
             style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
             
-            Descubra em 10 minutos onde pode estar vazando dinheiro da sua operação de aquisição e Marketing.
+            Descubra em 10 minutos onde pode estar <span className="text-gold">vazando dinheiro</span> da sua operação de aquisição e Marketing.
           </h2>
           <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] max-w-[540px] mx-auto">
             Preencha o diagnóstico e receba uma análise completa e possibilidades de melhorias.
@@ -678,7 +678,7 @@ function FAQ() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Dúvidas Frequentes
+          <span className="text-gold">Dúvidas</span> Frequentes
         </motion.h2>
 
         <div className="space-y-2">
@@ -752,7 +752,7 @@ function About() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Conheça a Agência KWF
+          Conheça a <span className="text-gold">Agência KWF</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
@@ -844,7 +844,7 @@ function Footer() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-6 mb-6">
           <div>
-            <p className="text-foreground text-xl font-bold mb-1.5">KWF</p>
+            <p className="text-gold text-xl font-bold mb-1.5">KWF</p>
             <p className="text-muted-foreground text-[13px] leading-[1.7] max-w-[360px]">
               Sistemas de aquisição e receita previsível para empresas de serviço.
             </p>
