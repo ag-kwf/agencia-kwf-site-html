@@ -670,9 +670,9 @@ function FAQ() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}>
         
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3 text-center">
-          Dúvidas
-        </motion.p>
+        
+
+        
         <motion.h2
           variants={fadeUp}
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
