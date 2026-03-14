@@ -106,7 +106,7 @@ function Hero() {
             
             Transforme seu marketing em um sistema de aquisição e{" "}
             <span className="text-gold">receita previsível</span>{" "}
-            com metodologia, processo e inteligência em cada etapa
+            com metodologia, processo e <span className="text-gold">inteligência</span> em cada etapa
           </motion.h1>
 
           <motion.p
