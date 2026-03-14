@@ -433,7 +433,7 @@ function Results() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Pare de ficar se perguntando "isso tá funcionando?"
+          Pare de ficar se perguntando <span className="text-gold">"isso tá funcionando?"</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-8 text-center" style={{ textWrap: "balance" }}>
           Abre o dashboard. Veja todo o fluxo. Tome decisões acertadas.
