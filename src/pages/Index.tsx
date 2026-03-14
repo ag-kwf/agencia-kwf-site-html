@@ -678,7 +678,7 @@ function FAQ() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Dúvidas Frequentes
+          <span className="text-gold">Dúvidas</span> Frequentes
         </motion.h2>
 
         <div className="space-y-2">
