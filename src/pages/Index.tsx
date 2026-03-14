@@ -752,7 +752,7 @@ function About() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}>
           
-          Conheça a Agência KWF.
+          Conheça a Agência KWF
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
