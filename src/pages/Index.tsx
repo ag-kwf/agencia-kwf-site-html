@@ -1,6 +1,6 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -38,7 +38,6 @@ function Navbar() {
           </span>
         </a>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
           {links.map((l) => (
             <a
@@ -59,7 +58,7 @@ function Navbar() {
             onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
             onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
           >
-            Diagnóstico Estratégico
+            Pré-Diagnóstico Estratégico
           </a>
           <button
             onClick={() => setOpen(!open)}
@@ -71,7 +70,6 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div
           className="absolute top-[68px] left-0 right-0 md:hidden flex flex-col gap-1 p-4"
@@ -92,7 +90,7 @@ function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-2 inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-5 py-3 hover:bg-green-hover transition-all"
           >
-            Diagnóstico Estratégico
+            Pré-Diagnóstico Estratégico
           </a>
         </div>
       )}
@@ -105,67 +103,55 @@ function Hero() {
   return (
     <section className="pt-[120px] pb-24 md:pb-[96px] px-6 md:px-10">
       <motion.div
-        className="max-w-[1100px] mx-auto"
+        className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
-          Sistema de aquisição e receita previsível
-        </motion.p>
-
-        <motion.h1
-          variants={fadeUp}
-          className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-3"
-          style={{ fontSize: "clamp(34px, 5vw, 58px)" }}
-        >
-          Transforme seu marketing em um sistema de aquisição e{" "}
-          <span className="text-gold">receita previsível</span>
-        </motion.h1>
-
-        <motion.p variants={fadeUp} className="text-[15px] md:text-base text-muted-foreground leading-[1.7] max-w-[640px] mb-8">
-          com metodologia, processo e inteligência em cada etapa — da captação ao fechamento.
-        </motion.p>
-
-        <motion.blockquote
-          variants={fadeUp}
-          className="border-l-2 border-gold rounded-r-lg italic text-muted-foreground text-[15px] leading-[1.7] pl-5 py-4 pr-4 mb-10 max-w-[640px]"
-          style={{ background: "rgba(255,255,255,0.03)" }}
-        >
-          "O que custa caro não é investir em marketing — é crescer sem sistema, sem clareza e sem saber onde o
-          dinheiro está vazando."
-        </motion.blockquote>
-
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-          <a
-            href="#diagnostico"
-            className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.05em] px-7 md:px-9 py-4 hover:bg-green-hover transition-all"
-            style={{ boxShadow: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
-            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-          >
-            Agendar Diagnóstico Estratégico
-          </a>
-          <a
-            href="#como-funciona"
-            className="inline-flex items-center justify-center rounded-lg text-foreground text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.05em] px-6 py-4 transition-all"
-            style={{
-              border: "1px solid rgba(255,255,255,0.14)",
-              background: "transparent",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.20)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
-            }}
-          >
-            Como Funciona →
-          </a>
+        {/* Left: image placeholder */}
+        <motion.div variants={fadeUp} className="w-full md:w-1/2 order-2 md:order-1">
+          <GlassCard className="h-[300px] md:h-[420px] flex items-center justify-center">
+            {/* TODO: substituir por imagem real */}
+            <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
+          </GlassCard>
         </motion.div>
+
+        {/* Right: text content */}
+        <div className="w-full md:w-1/2 order-1 md:order-2 text-center md:text-right">
+          <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
+            Sistema de aquisição e receita previsível
+          </motion.p>
+
+          <motion.h1
+            variants={fadeUp}
+            className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-5"
+            style={{ fontSize: "clamp(34px, 5vw, 58px)" }}
+          >
+            Transforme seu marketing em um sistema de aquisição e{" "}
+            <span className="text-gold">receita previsível</span>{" "}
+            com metodologia, processo e inteligência em cada etapa da captação ao fechamento
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-muted-foreground text-[15px] md:text-base leading-[1.7] mb-8"
+          >
+            O que custa caro não é investir em marketing, é crescer sem sistema, sem clareza e sem saber onde o dinheiro está vazando.
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="flex justify-center md:justify-end">
+            <a
+              href="#diagnostico"
+              className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.05em] px-7 md:px-9 py-4 hover:bg-green-hover transition-all"
+              style={{ boxShadow: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+            >
+              Quero um Pré-diagnóstico
+            </a>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );
@@ -195,23 +181,20 @@ function GlassCard({ children, className = "", hoverGold = false }: { children: 
   );
 }
 
-/* ─── TRÊS PROBLEMAS ─── */
+/* ─── PRA QUEM É (PROBLEMAS) ─── */
 function Problems() {
   const cards = [
     {
-      emoji: "🪣",
       title: "O balde furado",
       body: "Você atrai lead, mas perde no caminho. Atendimento demorado, follow-up esquecido, proposta que some. O funil vaza antes de chegar no fechamento.",
       result: "→ Resultado: esforço alto, fechamento baixo.",
     },
     {
-      emoji: "🚗",
       title: "O carro sem painel",
       body: "Sem metas claras, sem KPIs, sem dashboard. Você dirige no escuro. Não sabe se está acelerando, freando ou parado.",
       result: "→ Resultado: decisões no achismo, mês a mês.",
     },
     {
-      emoji: "⚙️",
       title: "O trabalho manual",
       body: "Follow-up na mão, CRM preenchido com atraso, lead esperando resposta. Tudo depende de gente, e gente falha.",
       result: "→ Resultado: lead esfria, venda perde, concorrente ganha.",
@@ -227,30 +210,141 @@ function Problems() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
           Caso se identifique, você está no lugar certo
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12"
+          className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-12 text-center max-w-[700px] mx-auto"
           style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
         >
-          Três problemas que travam o crescimento de 7 em cada 10 empresas.
+          Três problemas que travam o crescimento{" "}
+          <br className="hidden md:block" />
+          de 7 em cada 10 empresas.
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-4 md:gap-5">
-          {cards.map((c) => (
-            <motion.div key={c.title} variants={fadeUp}>
-              <GlassCard hoverGold>
-                <div className="w-7 h-0.5 bg-gold rounded mb-5" />
-                <span className="text-[28px] block mb-3">{c.emoji}</span>
-                <h3 className="text-foreground text-lg font-bold tracking-[-0.01em] mb-2">{c.title}</h3>
-                <p className="text-muted-foreground text-[15px] leading-[1.7] mb-4">{c.body}</p>
-                <p className="text-gold text-xs">{c.result}</p>
-              </GlassCard>
-            </motion.div>
-          ))}
+        <div className="space-y-5">
+          {cards.map((c, i) => {
+            const isReversed = i % 2 === 1;
+            return (
+              <motion.div key={c.title} variants={fadeUp}>
+                <GlassCard hoverGold>
+                  <div className={`flex flex-col md:flex-row gap-6 items-center ${isReversed ? "md:flex-row-reverse" : ""}`}>
+                    {/* Text */}
+                    <div className="w-full md:w-1/2">
+                      <div className="w-7 h-0.5 bg-gold rounded mb-4" />
+                      <h3 className="text-foreground text-lg font-bold tracking-[-0.01em] mb-2">{c.title}</h3>
+                      <p className="text-muted-foreground text-[15px] leading-[1.7] mb-3">{c.body}</p>
+                      <p className="text-gold text-xs">{c.result}</p>
+                    </div>
+                    {/* Image placeholder */}
+                    <div className="w-full md:w-1/2">
+                      <div
+                        className="rounded-lg h-[180px] flex items-center justify-center"
+                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                      >
+                        {/* TODO: substituir por imagem real */}
+                        <span className="text-muted-foreground text-xs opacity-40">Imagem</span>
+                      </div>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            );
+          })}
         </div>
+      </motion.div>
+    </section>
+  );
+}
+
+/* ─── CARROSSEL DE LOGOS ─── */
+function LogoCarousel() {
+  const scrollRef1 = useRef<HTMLDivElement>(null);
+  const scrollRef2 = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const animate = (ref: React.RefObject<HTMLDivElement | null>, speed: number) => {
+      let pos = 0;
+      const el = ref.current;
+      if (!el) return;
+      const tick = () => {
+        pos += speed;
+        if (pos >= el.scrollWidth / 2) pos = 0;
+        el.scrollLeft = pos;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    animate(scrollRef1, 0.5);
+    animate(scrollRef2, 0.4);
+  }, []);
+
+  const logos = Array.from({ length: 8 }, (_, i) => i + 1);
+
+  const renderRow = (ref: React.RefObject<HTMLDivElement | null>) => (
+    <div ref={ref} className="flex gap-4 overflow-hidden" style={{ scrollbarWidth: "none" }}>
+      {[...logos, ...logos].map((n, idx) => (
+        <div
+          key={idx}
+          className="shrink-0 w-[100px] h-[100px] rounded-full flex items-center justify-center transition-all duration-300"
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          {/* TODO: substituir por logos reais */}
+          <span className="text-muted-foreground text-[10px] opacity-40">Logo {n}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="space-y-4">
+      {renderRow(scrollRef1)}
+      {renderRow(scrollRef2)}
+    </div>
+  );
+}
+
+/* ─── PROVA SOCIAL ─── */
+function SocialProof() {
+  return (
+    <section className="py-16 md:py-24 px-6 md:px-10">
+      <motion.div
+        className="max-w-[1100px] mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={stagger}
+      >
+        <motion.h2
+          variants={fadeUp}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 text-center"
+          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+        >
+          Quem já confiou na Agência KWF.
+        </motion.h2>
+        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] text-center mb-12">
+          Atendemos grandes Empresas Tradicionais e do Digital
+        </motion.p>
+
+        <motion.div variants={fadeUp} className="mb-12">
+          <LogoCarousel />
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="text-center">
+          <a
+            href="#diagnostico"
+            className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-9 py-4 hover:bg-green-hover transition-all"
+            style={{ boxShadow: "none" }}
+            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
+            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+          >
+            Quero meu pré-diagnóstico
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   );
@@ -259,28 +353,26 @@ function Problems() {
 /* ─── ANTES VS DEPOIS ─── */
 function BeforeAfter() {
   const before = [
-    "Investe em ads sem saber o que voltou",
-    "Relatório de likes que não paga boleto",
-    "Lead chega e demora horas pra responder",
-    "CRM preenchido na mão — ou não preenchido",
+    "Investe em ads sem saber o retorno",
+    "Relatórios soltos que não trazem inteligência ou identificam gargalos",
+    "Lead chegam perdidos e ficam parados",
+    "Operação Manual com nenhum controle",
     "Resultado depende de sorte e indicação",
-    "Ferramentas soltas que não conversam",
-    "Paga R$15–20k em equipe pra fazer o básico",
+    "Paga R$25–35k em equipe pra fazer o básico",
   ];
   const after = [
-    "Dashboard mostra quanto cada real retornou",
-    "Métricas de receita, não de vaidade",
-    "IA responde lead em menos de 3 segundos",
-    "CRM preenche sozinho com dados da conversa",
-    "Funil previsível — você sabe quantos clientes vêm",
-    "Tudo integrado: ads → landing → WhatsApp → CRM",
-    "Operação completa por uma fração do custo",
+    "Dashboard com dados reais de retorno",
+    "Mapeamento do fluxo de aquisição, sem perda de lead",
+    "IA responde lead em segundos e qualifica o lead",
+    "Implantação de IA e Automação nos processos",
+    "Funil com previsibilidade de retorno",
+    "Operação de aquisição completa por uma fração do custo",
   ];
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-10">
+    <section className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
-        className="max-w-[920px] mx-auto"
+        className="max-w-[1000px] mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
@@ -288,13 +380,19 @@ function BeforeAfter() {
       >
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-12"
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-2"
           style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
         >
-          Enquanto você ainda adivinha... <span className="text-gold">seu concorrente já sabe.</span>
+          Enquanto você ainda sofre para adivinhar...
         </motion.h2>
+        <motion.p
+          variants={fadeUp}
+          className="text-muted-foreground text-[15px] leading-[1.7] text-center mb-12"
+        >
+          o faturamento que poderia estar no seu bolso está escorrendo.
+        </motion.p>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid md:grid-cols-[4fr_5fr] gap-4 md:gap-5">
           <motion.div
             variants={fadeUp}
             className="rounded-xl p-6"
@@ -325,7 +423,7 @@ function BeforeAfter() {
               className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-5"
               style={{ background: "rgba(19,150,87,0.14)", color: "#139657" }}
             >
-              Com o sistema KWF
+              Com o sistema de aquisição da KWF
             </span>
             <ul className="space-y-3">
               {after.map((t) => (
@@ -337,14 +435,46 @@ function BeforeAfter() {
             </ul>
           </motion.div>
         </div>
+      </motion.div>
+    </section>
+  );
+}
 
-        <motion.div variants={fadeUp} className="text-center mt-10">
-          <a
-            href="#diagnostico"
-            className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-9 py-4 hover:bg-green-hover transition-all"
-          >
-            Quero sair do achismo
-          </a>
+/* ─── RESULTADOS / DASHBOARD ─── */
+function Results() {
+  return (
+    <section id="resultados" className="py-16 md:py-24 px-6 md:px-10">
+      <motion.div
+        className="max-w-[1100px] mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={stagger}
+      >
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
+          Resultados reais
+        </motion.p>
+        <motion.h2
+          variants={fadeUp}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 text-center"
+          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+        >
+          Pare de ficar se perguntando "isso tá funcionando?"
+        </motion.h2>
+        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] mb-12 text-center">
+          Abre o dashboard. Veja todo o fluxo. Tome decisões acertadas.
+        </motion.p>
+
+        <motion.div variants={fadeUp}>
+          <GlassCard className="max-w-[900px] mx-auto">
+            <div
+              className="rounded-lg h-[300px] md:h-[420px] flex items-center justify-center"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+            >
+              {/* TODO: substituir por imagem real do dashboard */}
+              <span className="text-muted-foreground text-sm opacity-40">Imagem do Dashboard</span>
+            </div>
+          </GlassCard>
         </motion.div>
       </motion.div>
     </section>
@@ -356,18 +486,24 @@ function HowItWorks() {
   const steps = [
     {
       num: "01",
+      title: "Pré-Diagnóstico",
+      subtitle: "Análise do funil de aquisição atual",
+      body: "Entenda como está sua aquisição atualmente e como ter clareza do sistema te ajuda a escalar seus resultados.",
+    },
+    {
+      num: "02",
       title: "Diagnóstico Raio-X",
       subtitle: "Você descobre onde o dinheiro vaza",
       body: "Mapeamos seu marketing e mostramos exatamente o que funciona e o que não funciona. Você recebe um relatório visual com o caminho claro.",
     },
     {
-      num: "02",
+      num: "03",
       title: "Instalação do Sistema",
       subtitle: "Montamos tudo no seu negócio em 30 dias",
       body: "Funil automatizado, IA no WhatsApp, dashboard de resultado. Tudo rodando sem você precisar virar especialista em nada.",
     },
     {
-      num: "03",
+      num: "04",
       title: "Aceleração Contínua",
       subtitle: "Seu marketing melhora todo mês",
       body: "Otimização diária. Testes semanais. O sistema fica mais inteligente e mais rentável a cada ciclo — sem você fazer mais nada.",
@@ -377,7 +513,7 @@ function HowItWorks() {
   return (
     <section id="como-funciona" className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
-        className="max-w-[780px] mx-auto"
+        className="max-w-[900px] mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
@@ -391,16 +527,27 @@ function HowItWorks() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3"
           style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
         >
-          Do diagnóstico ao resultado. Tudo visível pra você.
+          Do Pré-Diagnóstico ao Sistema de Aquisição KWF implementado
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] mb-12">
-          Você não precisa entender de marketing. Precisa ver resultado.
+          Você não precisa entender de marketing, só precisa ter clareza e ver resultado.
         </motion.p>
 
         <div className="space-y-0">
           {steps.map((s, i) => (
             <motion.div key={s.num} variants={fadeUp} className="flex gap-5 md:gap-7">
-              {/* Left: circle + connector */}
+              {/* Left: image placeholder */}
+              <div className="hidden md:block w-[200px] shrink-0">
+                <div
+                  className="rounded-lg h-[120px] flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                  {/* TODO: substituir por imagem real */}
+                  <span className="text-muted-foreground text-[10px] opacity-40">Imagem</span>
+                </div>
+              </div>
+
+              {/* Center: circle + connector */}
               <div className="flex flex-col items-center">
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center text-gold text-[13px] font-bold shrink-0"
@@ -414,7 +561,7 @@ function HowItWorks() {
               </div>
 
               {/* Right: content */}
-              <div className={i < steps.length - 1 ? "pb-10" : "pb-0"}>
+              <div className={i < steps.length - 1 ? "pb-10 flex-1" : "pb-0 flex-1"}>
                 <h3 className="text-foreground text-lg font-bold tracking-[-0.01em] mb-1">{s.title}</h3>
                 <p className="text-gold text-[13px] mb-2">{s.subtitle}</p>
                 <p className="text-muted-foreground text-[15px] leading-[1.7]">{s.body}</p>
@@ -427,145 +574,14 @@ function HowItWorks() {
   );
 }
 
-/* ─── RESULTADOS ─── */
-function Results() {
-  const metrics = [
-    { value: "347", label: "leads gerados / mês", change: "▲ +23% vs anterior" },
-    { value: "R$18", label: "custo por lead", change: "▼ -31% vs anterior" },
-    { value: "4,2%", label: "taxa de conversão", change: "▲ +0,8pp vs anterior" },
-    { value: "8,4x", label: "retorno sobre investimento", change: "▲ +2,1x vs anterior" },
-  ];
-
-  return (
-    <section id="resultados" className="py-16 md:py-24 px-6 md:px-10">
-      <motion.div
-        className="max-w-[1100px] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-        variants={stagger}
-      >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
-          Resultados reais
-        </motion.p>
-        <motion.h2
-          variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
-        >
-          Você nunca mais vai perguntar "isso tá funcionando?"
-        </motion.h2>
-        <motion.p variants={fadeUp} className="text-muted-foreground text-[15px] leading-[1.7] mb-12">
-          Abre o dashboard. Vê tudo. Em tempo real. Sem depender de ninguém.
-        </motion.p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          {metrics.map((m) => (
-            <motion.div key={m.label} variants={fadeUp}>
-              <GlassCard>
-                <div className="w-full h-0.5 rounded mb-5" style={{ background: "rgba(205,160,102,0.40)" }} />
-                <p className="text-gold text-[38px] font-bold leading-none mb-1">{m.value}</p>
-                <p className="text-muted-foreground text-xs mb-3">{m.label}</p>
-                <p className="text-accent text-xs font-semibold">{m.change}</p>
-              </GlassCard>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.p variants={fadeUp} className="text-center text-[11px] text-muted-foreground mt-8 opacity-60">
-          Dados ilustrativos. Seu dashboard terá as métricas reais do seu negócio.
-        </motion.p>
-      </motion.div>
-    </section>
-  );
-}
-
-/* ─── PROVA SOCIAL ─── */
-function SocialProof() {
-  const agencyMetrics = [
-    { value: "6+", label: "anos de operação" },
-    { value: "R$2M+", label: "gerenciados em ads" },
-    { value: "100%", label: "foco em resultado" },
-    { value: "24/7", label: "sistema operando" },
-  ];
-
-  return (
-    <section className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
-      <motion.div
-        className="max-w-[1100px] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-        variants={stagger}
-      >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
-          Prova social
-        </motion.p>
-        <motion.h2
-          variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12"
-          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
-        >
-          Quem já confiou na Agência KWF.
-        </motion.h2>
-
-        {/* Client logos placeholder */}
-        <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {[1, 2, 3, 4].map((n) => (
-            <GlassCard key={n} className="flex items-center justify-center h-[72px]">
-              {/* TODO: substituir por assets reais */}
-              <span className="text-muted-foreground text-xs opacity-40">Logo cliente {n}</span>
-            </GlassCard>
-          ))}
-        </motion.div>
-
-        {/* Agency metrics */}
-        <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {agencyMetrics.map((m) => (
-            <div key={m.label} className="pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-gold text-[32px] font-bold leading-none mb-1">{m.value}</p>
-              <p className="text-muted-foreground text-[13px]">{m.label}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Testimonials */}
-        {/* TODO: substituir por depoimentos validados */}
-        <motion.div variants={fadeUp} className="grid md:grid-cols-2 gap-5 max-w-[860px] mx-auto">
-          {[
-            {
-              quote: "Pela primeira vez sei quanto cada real retorna. Antes era confiança cega. Agora é dado.",
-              name: "Ricardo M.",
-              role: "CEO, Clínica Premium — SP",
-            },
-            {
-              quote: "Queria só focar no meu negócio. O dashboard me dá tranquilidade total.",
-              name: "Fernanda S.",
-              role: "Fundadora, Estética — CWB",
-            },
-          ].map((t) => (
-            <GlassCard key={t.name}>
-              <p className="text-foreground text-[15px] italic leading-[1.7] mb-5">"{t.quote}"</p>
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }} className="pt-4">
-                <p className="text-foreground text-sm font-semibold">— {t.name}</p>
-                <p className="text-muted-foreground text-xs">{t.role}</p>
-              </div>
-            </GlassCard>
-          ))}
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
-
 /* ─── DIAGNÓSTICO FORM ─── */
 function DiagnosticForm() {
-  const [form, setForm] = useState({ name: "", whatsapp: "", company: "", revenue: "", pain: "" });
+  const [form, setForm] = useState({ name: "", whatsapp: "", email: "", segment: "" });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Olá! Quero agendar meu Diagnóstico Estratégico.\n\nNome: ${form.name}\nWhatsApp: ${form.whatsapp}\nEmpresa: ${form.company}\nFaturamento: ${form.revenue}\nDor: ${form.pain}`
+      `Olá! Quero agendar meu Pré-Diagnóstico Estratégico.\n\nNome: ${form.name}\nWhatsApp: ${form.whatsapp}\nEmail: ${form.email}\nSegmento: ${form.segment}`
     );
     // TODO: substituir pelo número real
     window.open(`https://wa.me/SEU_NUMERO?text=${msg}`, "_blank");
@@ -583,33 +599,20 @@ function DiagnosticForm() {
     transition: "border-color 0.2s",
   };
 
-  const InputField = ({ label, placeholder, value, onChange, textarea = false }: {
-    label: string; placeholder: string; value: string; onChange: (v: string) => void; textarea?: boolean;
+  const InputField = ({ label, placeholder, value, onChange, type = "text" }: {
+    label: string; placeholder: string; value: string; onChange: (v: string) => void; type?: string;
   }) => (
     <div>
       <label className="block text-muted-foreground text-xs uppercase tracking-[0.14em] mb-2 font-medium">{label}</label>
-      {textarea ? (
-        <textarea
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          rows={3}
-          style={inputStyle}
-          onFocus={(e) => (e.currentTarget.style.borderColor = "#CDA066")}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)")}
-          className="resize-none"
-        />
-      ) : (
-        <input
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          style={inputStyle}
-          onFocus={(e) => (e.currentTarget.style.borderColor = "#CDA066")}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)")}
-        />
-      )}
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={inputStyle}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#CDA066")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)")}
+      />
     </div>
   );
 
@@ -625,24 +628,26 @@ function DiagnosticForm() {
         <motion.div variants={fadeUp} className="text-center mb-12">
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">Próximo passo</p>
           <h2
-            className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3"
+            className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3 max-w-[700px] mx-auto"
             style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
           >
-            Descubra em 30 minutos onde seu marketing vaza dinheiro.
+            Descubra em 10 minutos onde pode estar vazando dinheiro da sua operação de aquisição e Marketing.
           </h2>
           <p className="text-muted-foreground text-[15px] leading-[1.7] max-w-[540px] mx-auto">
-            Preencha o diagnóstico e receba uma análise completa da sua operação de marketing.
+            Preencha o diagnóstico e receba uma análise completa e possibilidades de melhorias.
           </p>
         </motion.div>
 
         <motion.div variants={fadeUp}>
           <GlassCard className="max-w-[600px] mx-auto">
+            <p className="text-foreground text-base font-semibold mb-6 text-center">
+              Preencha as informações abaixo para iniciar o diagnóstico
+            </p>
             <form onSubmit={handleSubmit} className="space-y-5">
-              <InputField label="Seu nome" placeholder="Ex: João Silva" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+              <InputField label="Nome" placeholder="Ex: João Silva" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
               <InputField label="WhatsApp" placeholder="(00) 00000-0000" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
-              <InputField label="Nome da empresa" placeholder="Ex: Clínica Premium SP" value={form.company} onChange={(v) => setForm({ ...form, company: v })} />
-              <InputField label="Faturamento mensal" placeholder="Ex: R$150.000" value={form.revenue} onChange={(v) => setForm({ ...form, revenue: v })} />
-              <InputField label="Qual sua maior dor com marketing hoje?" placeholder="Conte brevemente..." value={form.pain} onChange={(v) => setForm({ ...form, pain: v })} textarea />
+              <InputField label="Email" placeholder="seu@email.com" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" />
+              <InputField label="Segmento" placeholder="Ex: Clínica, Estética, Educação..." value={form.segment} onChange={(v) => setForm({ ...form, segment: v })} />
 
               <button
                 type="submit"
@@ -651,7 +656,7 @@ function DiagnosticForm() {
                 onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(19,150,87,0.30)")}
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
               >
-                Agendar meu diagnóstico estratégico
+                Agendar meu pré-diagnóstico estratégico
               </button>
             </form>
             <p className="text-muted-foreground text-xs text-center mt-5">
@@ -664,55 +669,10 @@ function DiagnosticForm() {
   );
 }
 
-/* ─── SOBRE ─── */
-function About() {
-  return (
-    <section id="sobre" className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
-      <motion.div
-        className="max-w-[1100px] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-        variants={stagger}
-      >
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-          <motion.div variants={fadeUp}>
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">Sobre</p>
-            <h2
-              className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-3"
-              style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
-            >
-              Por trás do sistema que entrega esses resultados.
-            </h2>
-            <p className="text-muted-foreground text-[15px] leading-[1.7]">
-              6+ anos resolvendo um problema: empresários bons investindo em marketing sem ver retorno. A KWF nasceu da
-              frustração de ver negócios sólidos desperdiçando capital em ações desconectadas — sem sistema, sem método,
-              sem resultado mensurável.
-            </p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="space-y-4">
-            {/* TODO: substituir por assets reais */}
-            <GlassCard className="h-40 flex items-center justify-center">
-              <span className="text-muted-foreground text-xs opacity-40">Foto equipe</span>
-            </GlassCard>
-            <div className="grid grid-cols-2 gap-4">
-              <GlassCard className="h-28 flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Reunião estratégica</span>
-              </GlassCard>
-              <GlassCard className="h-28 flex items-center justify-center">
-                <span className="text-muted-foreground text-xs opacity-40">Dashboard real</span>
-              </GlassCard>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    </section>
-  );
-}
-
 /* ─── FAQ ─── */
 function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const items = [
     {
       q: "Já tive agência e não funcionou. Por que seria diferente?",
@@ -737,7 +697,7 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-16 md:py-24 px-6 md:px-10">
+    <section id="faq" className="py-16 md:py-24 px-6 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
       <motion.div
         className="max-w-[720px] mx-auto"
         initial="hidden"
@@ -745,26 +705,121 @@ function FAQ() {
         viewport={{ once: true, margin: "-60px" }}
         variants={stagger}
       >
-        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5">
+        <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3.5 text-center">
           Dúvidas
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12"
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12 text-center"
           style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
         >
-          Tudo que você quer saber antes de dar o próximo passo.
+          Dúvidas Frequentes
         </motion.h2>
 
-        <div className="space-y-1">
-          {items.map((item) => (
+        <div className="space-y-2">
+          {items.map((item, i) => (
             <motion.div key={item.q} variants={fadeUp}>
-              <GlassCard>
-                <h3 className="text-foreground text-[15px] font-semibold mb-2">{item.q}</h3>
-                <p className="text-muted-foreground text-sm leading-[1.7]">{item.a}</p>
-              </GlassCard>
+              <div
+                className="rounded-xl overflow-hidden transition-all duration-300 cursor-pointer"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              >
+                <div className="flex items-center justify-between p-5 gap-4">
+                  <h3 className="text-foreground text-[15px] font-semibold">{item.q}</h3>
+                  <ChevronDown
+                    size={18}
+                    className={`text-muted-foreground shrink-0 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`}
+                  />
+                </div>
+                <div
+                  className="overflow-hidden transition-all duration-300"
+                  style={{
+                    maxHeight: openIndex === i ? "200px" : "0px",
+                    opacity: openIndex === i ? 1 : 0,
+                  }}
+                >
+                  <p className="text-muted-foreground text-sm leading-[1.7] px-5 pb-5">{item.a}</p>
+                </div>
+              </div>
             </motion.div>
           ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+/* ─── SOBRE ─── */
+function About() {
+  const metrics = [
+    { value: "+R$20M", label: "investidos em campanhas" },
+    { value: "+60mil", label: "vendas realizadas" },
+    { value: "+R$80M", label: "de faturamento no digital" },
+  ];
+
+  return (
+    <section id="sobre" className="py-16 md:py-24 px-6 md:px-10">
+      <motion.div
+        className="max-w-[1100px] mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={stagger}
+      >
+        <motion.h2
+          variants={fadeUp}
+          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-12 text-center"
+          style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+        >
+          Conheça a Agência KWF.
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+          {/* Photos carousel placeholder */}
+          <motion.div variants={fadeUp} className="space-y-4">
+            {/* TODO: substituir por carrossel real de fotos */}
+            <div className="grid grid-cols-2 gap-4">
+              <GlassCard className="h-[160px] flex items-center justify-center">
+                <span className="text-muted-foreground text-xs opacity-40">Foto 1</span>
+              </GlassCard>
+              <GlassCard className="h-[160px] flex items-center justify-center">
+                <span className="text-muted-foreground text-xs opacity-40">Foto 2</span>
+              </GlassCard>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <GlassCard className="h-[160px] flex items-center justify-center">
+                <span className="text-muted-foreground text-xs opacity-40">Foto 3</span>
+              </GlassCard>
+              <GlassCard className="h-[160px] flex items-center justify-center">
+                <span className="text-muted-foreground text-xs opacity-40">Foto 4</span>
+              </GlassCard>
+            </div>
+          </motion.div>
+
+          {/* Text */}
+          <motion.div variants={fadeUp}>
+            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-6">
+              A Agência KWF trabalha com empresas tradicionais e digitais, onde percebemos um padrão: negócios sólidos, com produto bom estão perdendo receita e oportunidade por falta de sistema de aquisição.
+            </p>
+            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-6">
+              Por isso, pegamos as estratégias de aquisição mais validadas do mercado digital e as instalamos dentro de negócios tradicionais com um método claro.
+            </p>
+            <p className="text-muted-foreground text-[15px] leading-[1.7] mb-10">
+              O Sistema KWF combina estratégia, funil de aquisição, automações, IA e gestão de dados desenhada para gerar o máximo de previsibilidade de resultados.
+            </p>
+
+            <div className="grid grid-cols-3 gap-4">
+              {metrics.map((m) => (
+                <div key={m.label}>
+                  <p className="text-gold text-[28px] md:text-[32px] font-bold leading-none mb-1">{m.value}</p>
+                  <p className="text-muted-foreground text-[12px]">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>
@@ -803,8 +858,20 @@ function Footer() {
             <div>
               <p className="text-foreground text-sm font-semibold mb-3">Ação</p>
               <a href="#diagnostico" className="text-accent text-sm font-semibold hover:underline">
-                Diagnóstico Estratégico →
+                Pré-Diagnóstico Estratégico →
               </a>
+            </div>
+            <div>
+              <p className="text-foreground text-sm font-semibold mb-3">Legal</p>
+              <div className="flex flex-col gap-2">
+                {/* TODO: substituir por links reais */}
+                <a href="#" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  Política de Privacidade
+                </a>
+                <a href="#" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  Termo de Uso
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -826,13 +893,13 @@ export default function LandingPage() {
       <Navbar />
       <Hero />
       <Problems />
-      <BeforeAfter />
-      <HowItWorks />
-      <Results />
       <SocialProof />
+      <BeforeAfter />
+      <Results />
+      <HowItWorks />
       <DiagnosticForm />
-      <About />
       <FAQ />
+      <About />
       <Footer />
     </div>
   );
