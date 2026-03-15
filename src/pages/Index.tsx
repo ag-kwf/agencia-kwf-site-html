@@ -1037,7 +1037,7 @@ function About() {
             >
               {metrics.map((m) => (
                 <motion.div key={m.label} variants={fadeUp} className="group">
-                  <AnimatedCounter value={m.value} />
+                  <AnimatedCounter target={m.target} prefix={m.prefix} suffix={m.suffix} />
                   <p className="text-muted-foreground text-[11px] md:text-[12px] mt-1 group-hover:text-foreground transition-colors">{m.label}</p>
                 </motion.div>
               ))}
