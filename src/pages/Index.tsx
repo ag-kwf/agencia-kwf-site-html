@@ -34,20 +34,18 @@ const staggerFast = {
 };
 
 /* ─── ANIMATED COUNTER ─── */
-function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: string; prefix?: string; suffix?: string }) {
+function AnimatedCounter({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const numericPart = value.replace(/[^0-9]/g, "");
-  const numericValue = parseInt(numericPart, 10);
   const motionValue = useMotionValue(0);
   const spring = useSpring(motionValue, { damping: 30, stiffness: 80 });
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
     if (isInView) {
-      motionValue.set(numericValue);
+      motionValue.set(target);
     }
-  }, [isInView, numericValue, motionValue]);
+  }, [isInView, target, motionValue]);
 
   useEffect(() => {
     const unsub = spring.on("change", (v) => {
@@ -933,9 +931,9 @@ function About() {
   ];
 
   const metrics = [
-    { value: "+R$20M", label: "investidos em campanhas", prefix: "+R$", numericDisplay: "20M" },
-    { value: "+60mil", label: "vendas realizadas", prefix: "+", numericDisplay: "60mil" },
-    { value: "+R$80M", label: "de faturamento no digital", prefix: "+R$", numericDisplay: "80M" }
+    { target: 20, prefix: "+R$", suffix: "M", label: "investidos em campanhas" },
+    { target: 60, prefix: "+", suffix: "mil", label: "vendas realizadas" },
+    { target: 80, prefix: "+R$", suffix: "M", label: "de faturamento no digital" }
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % photos.length);
@@ -1039,7 +1037,7 @@ function About() {
             >
               {metrics.map((m) => (
                 <motion.div key={m.label} variants={fadeUp} className="group">
-                  <AnimatedCounter value={m.value} />
+                  <AnimatedCounter target={m.target} prefix={m.prefix} suffix={m.suffix} />
                   <p className="text-muted-foreground text-[11px] md:text-[12px] mt-1 group-hover:text-foreground transition-colors">{m.label}</p>
                 </motion.div>
               ))}
