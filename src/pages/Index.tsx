@@ -931,9 +931,9 @@ function About() {
   ];
 
   const metrics = [
-    { value: "+R$20M", label: "investidos em campanhas", prefix: "+R$", numericDisplay: "20M" },
-    { value: "+60mil", label: "vendas realizadas", prefix: "+", numericDisplay: "60mil" },
-    { value: "+R$80M", label: "de faturamento no digital", prefix: "+R$", numericDisplay: "80M" }
+    { target: 20, prefix: "+R$", suffix: "M", label: "investidos em campanhas" },
+    { target: 60, prefix: "+", suffix: "mil", label: "vendas realizadas" },
+    { target: 80, prefix: "+R$", suffix: "M", label: "de faturamento no digital" }
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % photos.length);
