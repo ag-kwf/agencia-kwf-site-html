@@ -34,20 +34,18 @@ const staggerFast = {
 };
 
 /* ─── ANIMATED COUNTER ─── */
-function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: string; prefix?: string; suffix?: string }) {
+function AnimatedCounter({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const numericPart = value.replace(/[^0-9]/g, "");
-  const numericValue = parseInt(numericPart, 10);
   const motionValue = useMotionValue(0);
   const spring = useSpring(motionValue, { damping: 30, stiffness: 80 });
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
     if (isInView) {
-      motionValue.set(numericValue);
+      motionValue.set(target);
     }
-  }, [isInView, numericValue, motionValue]);
+  }, [isInView, target, motionValue]);
 
   useEffect(() => {
     const unsub = spring.on("change", (v) => {
