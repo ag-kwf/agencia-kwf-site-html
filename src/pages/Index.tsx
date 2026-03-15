@@ -102,7 +102,7 @@ function Hero() {
           <motion.h1
             variants={fadeUp}
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
-            style={{ fontSize: "clamp(26px, 4vw, 44px)", textWrap: "balance" }}>
+            style={{ fontSize: "clamp(18px, 2.8vw, 31px)", textWrap: "balance" }}>
             
             Transforme seu marketing em um sistema de aquisição e{" "}
             <span className="text-gold">receita previsível</span>{" "}
