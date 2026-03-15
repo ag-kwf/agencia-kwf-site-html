@@ -222,68 +222,51 @@ function Navbar() {
 function Hero() {
   return (
     <section className="pt-[88px] md:pt-[100px] pb-8 md:pb-12 px-5 md:px-10 overflow-hidden">
-      <motion.div
+      <div
         className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12"
-        initial="hidden"
-        animate="visible"
-        variants={stagger}
       >
         {/* Left: text content */}
         <div className="w-full md:w-1/2 order-1 text-left">
-          <motion.div variants={fadeLeft} className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-3">
             <Sparkles size={12} className="text-gold animate-pulse" />
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold">
               Sistema de aquisição e receita previsível
             </p>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeLeft}
+          <h1
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
             style={{ fontSize: "clamp(18px, 2.8vw, 31px)", textWrap: "balance" }}
           >
             Transforme seu marketing em um sistema de aquisição e{" "}
-            <motion.span
-              className="text-gold inline-block"
-              initial={{ backgroundSize: "0% 2px" }}
-              animate={{ backgroundSize: "100% 2px" }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              style={{
-                backgroundImage: "linear-gradient(hsl(var(--gold)), hsl(var(--gold)))",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "0 100%"
-              }}
-            >
-              receita previsível
-            </motion.span>{" "}
+            <span className="text-gold">receita previsível</span>{" "}
             com metodologia, processo e <span className="text-gold">inteligência</span> em cada etapa
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeLeft}
+          <p
             className="text-muted-foreground text-[14px] leading-[1.7] mb-6 md:text-sm"
-            style={{ textWrap: "balance" }}
+            style={{ textWrap: "balance" as any }}
           >
             O que custa caro não é investir em marketing, é crescer sem sistema, sem clareza e sem saber onde o dinheiro está vazando.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeLeft}>
+          <div>
             <MagneticButton
               href="#diagnostico"
               className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-7 py-3.5 hover:bg-green-hover transition-all shadow-[0_0_30px_rgba(19,150,87,0.2)] hover:shadow-[0_0_50px_rgba(19,150,87,0.35)]"
             >
               Quero um Pré-diagnóstico
             </MagneticButton>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right: image placeholder */}
-        <motion.div variants={fadeRight} className="w-full md:w-1/2 order-2">
+        <div className="w-full md:w-1/2 order-2">
           <GlassCard className="h-[220px] md:h-[360px] flex items-center justify-center" hoverGlow>
             <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
           </GlassCard>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
