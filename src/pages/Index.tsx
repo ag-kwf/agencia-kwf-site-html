@@ -875,10 +875,10 @@ function Footer() {
             <div>
               <p className="text-foreground text-sm font-semibold mb-2">Legal</p>
               <div className="flex flex-col gap-1.5">
-                <a href="#" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
+                <a href="/politica-privacidade" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Política de Privacidade
                 </a>
-                <a href="#" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
+                <a href="/termo-de-uso" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Termo de Uso
                 </a>
               </div>
