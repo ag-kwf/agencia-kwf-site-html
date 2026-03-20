@@ -2,6 +2,30 @@ import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
+import logoInstituto from "@/assets/logos/Instituto_di_Moda_Burgo.svg";
+import logoJF from "@/assets/logos/JF_Ambiental.svg";
+import logoKenco from "@/assets/logos/Kenco_Saude.svg";
+import logoMaira from "@/assets/logos/Maira_Cardi.svg";
+import logoMaple from "@/assets/logos/MapleBear.svg";
+import logoMari from "@/assets/logos/Mari_Tortella.svg";
+import logoMottainai from "@/assets/logos/Mottainai_Brasil.svg";
+import logoRecicle from "@/assets/logos/Recicle_Ambiental.svg";
+import logoSeca from "@/assets/logos/Seca_Voce.svg";
+import logoTasso from "@/assets/logos/Tasso_Lago.svg";
+
+const clientLogos = [
+  { src: logoInstituto, alt: "Instituto di Moda Burgo" },
+  { src: logoJF, alt: "JF Ambiental" },
+  { src: logoKenco, alt: "Kenco Saúde" },
+  { src: logoMaira, alt: "Maíra Cardi" },
+  { src: logoMaple, alt: "MapleBear" },
+  { src: logoMari, alt: "Mari Tortella" },
+  { src: logoMottainai, alt: "Mottainai Brasil" },
+  { src: logoRecicle, alt: "Recicle Ambiental" },
+  { src: logoSeca, alt: "Seca Você" },
+  { src: logoTasso, alt: "Tasso Lago" },
+];
+
 /* ─── ANIMATION VARIANTS ─── */
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
@@ -409,14 +433,15 @@ function LogoCarousel() {
     animate(scrollRef2, 0.4);
   }, []);
 
-  const logos = Array.from({ length: 8 }, (_, i) => i + 1);
+  const row1 = clientLogos.slice(0, 5);
+  const row2 = clientLogos.slice(5);
 
-  const renderRow = (ref: React.RefObject<HTMLDivElement | null>) => (
+  const renderRow = (ref: React.RefObject<HTMLDivElement | null>, logos: typeof clientLogos) => (
     <div ref={ref} className="flex overflow-hidden gap-[8px] px-0 mx-[28px]" style={{ scrollbarWidth: "none" }}>
-      {[...logos, ...logos].map((n, idx) => (
+      {[...logos, ...logos].map((logo, idx) => (
         <motion.div
           key={idx}
-          className="shrink-0 w-[calc((100%-32px)/5)] aspect-square rounded-full flex items-center justify-center transition-all duration-300"
+          className="shrink-0 w-[calc((100%-32px)/5)] aspect-square rounded-full flex items-center justify-center transition-all duration-300 overflow-hidden"
           style={{
             background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.08)"
@@ -427,7 +452,7 @@ function LogoCarousel() {
             boxShadow: "0 0 20px rgba(205,160,102,0.15)"
           }}
         >
-          <span className="text-muted-foreground text-[9px] opacity-40">Logo {n}</span>
+          <img src={logo.src} alt={logo.alt} className="w-[75%] h-[75%] object-contain" loading="lazy" />
         </motion.div>
       ))}
     </div>
@@ -435,8 +460,8 @@ function LogoCarousel() {
 
   return (
     <div className="space-y-3">
-      {renderRow(scrollRef1)}
-      {renderRow(scrollRef2)}
+      {renderRow(scrollRef1, row1)}
+      {renderRow(scrollRef2, row2)}
     </div>
   );
 }
