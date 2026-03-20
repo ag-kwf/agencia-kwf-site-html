@@ -357,17 +357,20 @@ function Problems() {
     {
       title: "O balde furado",
       body: "Você atrai lead, mas perde no caminho. Atendimento demorado, follow-up esquecido, proposta que some. O funil vaza antes de chegar no fechamento.",
-      result: "→ Resultado: esforço alto, fechamento baixo."
+      result: "→ Resultado: esforço alto, fechamento baixo.",
+      image: imgBaldeFurado
     },
     {
       title: "O carro sem painel",
       body: "Sem metas claras, sem KPIs, sem dashboard. Você dirige no escuro. Não sabe se está acelerando, freando ou parado.",
-      result: "→ Resultado: decisões no achismo, mês a mês."
+      result: "→ Resultado: decisões no achismo, mês a mês.",
+      image: imgCarroSemPainel
     },
     {
       title: "O trabalho manual",
       body: "Follow-up na mão, CRM preenchido com atraso, lead esperando resposta. Tudo depende de gente, e gente falha.",
-      result: "→ Resultado: lead esfria, venda perde, concorrente ganha."
+      result: "→ Resultado: lead esfria, venda perde, concorrente ganha.",
+      image: imgTrabalhoManual
     }
   ];
 
