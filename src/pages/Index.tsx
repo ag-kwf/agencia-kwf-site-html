@@ -18,6 +18,8 @@ import logoDaniUchoa from "@/assets/logos/Dani_Uchoa.svg";
 import logoDesafioSeca from "@/assets/logos/Desafio_Seca.svg";
 import logoFinancialMove from "@/assets/logos/Financial_Move.svg";
 import logoFluency from "@/assets/logos/Fluency_Academy.svg";
+import agenciaKwf1 from "@/assets/agencia_kwf_1.png";
+import agenciaKwf2 from "@/assets/agencia_kwf_2.png";
 import logoHalterTech from "@/assets/logos/HalterTech.svg";
 
 const clientLogos = [
