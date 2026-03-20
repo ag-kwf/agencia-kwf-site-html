@@ -653,12 +653,16 @@ function Results() {
         </motion.p>
 
         <motion.div variants={scaleUp}>
-          <GlassCard className="max-w-[900px] mx-auto" hoverGlow>
-            <div
-              className="rounded-lg h-[200px] md:h-[380px] flex items-center justify-center"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              <span className="text-muted-foreground text-sm opacity-40">Imagem do Dashboard</span>
+          <GlassCard className="max-w-[900px] mx-auto md:max-w-[630px]" hoverGlow>
+            <div className="rounded-lg overflow-hidden">
+              <video
+                src="/videos/site_agencia_kwf.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto rounded-lg"
+              />
             </div>
           </GlassCard>
         </motion.div>
