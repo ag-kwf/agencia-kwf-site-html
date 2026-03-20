@@ -21,6 +21,9 @@ import logoFluency from "@/assets/logos/Fluency_Academy.svg";
 import agenciaKwf1 from "@/assets/agencia_kwf_1.png";
 import agenciaKwf2 from "@/assets/agencia_kwf_2.png";
 import logoHalterTech from "@/assets/logos/HalterTech.svg";
+import imgBaldeFurado from "@/assets/o_balde_furado.png";
+import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
+import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
