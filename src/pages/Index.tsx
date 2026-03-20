@@ -21,6 +21,9 @@ import logoFluency from "@/assets/logos/Fluency_Academy.svg";
 import agenciaKwf1 from "@/assets/agencia_kwf_1.png";
 import agenciaKwf2 from "@/assets/agencia_kwf_2.png";
 import logoHalterTech from "@/assets/logos/HalterTech.svg";
+import imgBaldeFurado from "@/assets/o_balde_furado.png";
+import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
+import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
@@ -354,17 +357,20 @@ function Problems() {
     {
       title: "O balde furado",
       body: "Você atrai lead, mas perde no caminho. Atendimento demorado, follow-up esquecido, proposta que some. O funil vaza antes de chegar no fechamento.",
-      result: "→ Resultado: esforço alto, fechamento baixo."
+      result: "→ Resultado: esforço alto, fechamento baixo.",
+      image: imgBaldeFurado
     },
     {
       title: "O carro sem painel",
       body: "Sem metas claras, sem KPIs, sem dashboard. Você dirige no escuro. Não sabe se está acelerando, freando ou parado.",
-      result: "→ Resultado: decisões no achismo, mês a mês."
+      result: "→ Resultado: decisões no achismo, mês a mês.",
+      image: imgCarroSemPainel
     },
     {
       title: "O trabalho manual",
       body: "Follow-up na mão, CRM preenchido com atraso, lead esperando resposta. Tudo depende de gente, e gente falha.",
-      result: "→ Resultado: lead esfria, venda perde, concorrente ganha."
+      result: "→ Resultado: lead esfria, venda perde, concorrente ganha.",
+      image: imgTrabalhoManual
     }
   ];
 
@@ -409,11 +415,8 @@ function Problems() {
                       <p className="text-gold text-xs">{c.result}</p>
                     </div>
                     <div className="w-full md:w-1/2">
-                      <div
-                        className="rounded-lg h-[140px] md:h-[180px] flex items-center justify-center"
-                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-                      >
-                        <span className="text-muted-foreground text-xs opacity-40">Imagem</span>
+                      <div className="rounded-lg h-[140px] md:h-[180px] overflow-hidden">
+                        <img src={c.image} alt={c.title} className="w-full h-full object-cover rounded-lg" />
                       </div>
                     </div>
                   </div>
