@@ -947,12 +947,11 @@ function FAQ() {
 function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const photos = [
-    { src: (await import("@/assets/agencia_kwf_1.png")).default, alt: "Equipe Agência KWF" },
-    { src: (await import("@/assets/agencia_kwf_2.png")).default, alt: "Agência KWF Eventos" },
+    { src: agenciaKwf1, alt: "Equipe Agência KWF" },
+    { src: agenciaKwf2, alt: "Agência KWF Eventos" },
   ];
-                </motion.div>
-              </AnimatePresence>
-            </div>
+
+  const metrics = [
 
             {/* Carousel controls */}
             <motion.button
