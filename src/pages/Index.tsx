@@ -447,8 +447,9 @@ function LogoCarousel() {
     animate(scrollRef2, 0.4);
   }, []);
 
-  const row1 = clientLogos.slice(0, 5);
-  const row2 = clientLogos.slice(5);
+  const mid = Math.ceil(clientLogos.length / 2);
+  const row1 = clientLogos.slice(0, mid);
+  const row2 = clientLogos.slice(mid);
 
   const renderRow = (ref: React.RefObject<HTMLDivElement | null>, logos: typeof clientLogos) => (
     <div ref={ref} className="flex overflow-hidden gap-[8px] px-0 mx-[28px]" style={{ scrollbarWidth: "none" }}>
