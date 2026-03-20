@@ -2,6 +2,30 @@ import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
+import logoInstituto from "@/assets/logos/Instituto_di_Moda_Burgo.svg";
+import logoJF from "@/assets/logos/JF_Ambiental.svg";
+import logoKenco from "@/assets/logos/Kenco_Saude.svg";
+import logoMaira from "@/assets/logos/Maira_Cardi.svg";
+import logoMaple from "@/assets/logos/MapleBear.svg";
+import logoMari from "@/assets/logos/Mari_Tortella.svg";
+import logoMottainai from "@/assets/logos/Mottainai_Brasil.svg";
+import logoRecicle from "@/assets/logos/Recicle_Ambiental.svg";
+import logoSeca from "@/assets/logos/Seca_Voce.svg";
+import logoTasso from "@/assets/logos/Tasso_Lago.svg";
+
+const clientLogos = [
+  { src: logoInstituto, alt: "Instituto di Moda Burgo" },
+  { src: logoJF, alt: "JF Ambiental" },
+  { src: logoKenco, alt: "Kenco Saúde" },
+  { src: logoMaira, alt: "Maíra Cardi" },
+  { src: logoMaple, alt: "MapleBear" },
+  { src: logoMari, alt: "Mari Tortella" },
+  { src: logoMottainai, alt: "Mottainai Brasil" },
+  { src: logoRecicle, alt: "Recicle Ambiental" },
+  { src: logoSeca, alt: "Seca Você" },
+  { src: logoTasso, alt: "Tasso Lago" },
+];
+
 /* ─── ANIMATION VARIANTS ─── */
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
