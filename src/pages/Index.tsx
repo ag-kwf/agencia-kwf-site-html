@@ -415,11 +415,8 @@ function Problems() {
                       <p className="text-gold text-xs">{c.result}</p>
                     </div>
                     <div className="w-full md:w-1/2">
-                      <div
-                        className="rounded-lg h-[140px] md:h-[180px] flex items-center justify-center"
-                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-                      >
-                        <span className="text-muted-foreground text-xs opacity-40">Imagem</span>
+                      <div className="rounded-lg h-[140px] md:h-[180px] overflow-hidden">
+                        <img src={c.image} alt={c.title} className="w-full h-full object-cover rounded-lg" />
                       </div>
                     </div>
                   </div>
