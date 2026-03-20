@@ -988,7 +988,7 @@ function About() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="w-full h-[220px] md:h-[300px] rounded-xl overflow-hidden"
+                  className="w-full aspect-square rounded-xl overflow-hidden"
                 >
                   <img
                     src={photos[currentSlide].src}
