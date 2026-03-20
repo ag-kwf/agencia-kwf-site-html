@@ -12,6 +12,13 @@ import logoMottainai from "@/assets/logos/Mottainai_Brasil.svg";
 import logoRecicle from "@/assets/logos/Recicle_Ambiental.svg";
 import logoSeca from "@/assets/logos/Seca_Voce.svg";
 import logoTasso from "@/assets/logos/Tasso_Lago.svg";
+import logoCentroOdonto from "@/assets/logos/Centro_Odontologico_Filhote.svg";
+import logoCuraVoce from "@/assets/logos/Cura_Voce.svg";
+import logoDaniUchoa from "@/assets/logos/Dani_Uchoa.svg";
+import logoDesafioSeca from "@/assets/logos/Desafio_Seca.svg";
+import logoFinancialMove from "@/assets/logos/Financial_Move.svg";
+import logoFluency from "@/assets/logos/Fluency_Academy.svg";
+import logoHalterTech from "@/assets/logos/HalterTech.svg";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
@@ -24,6 +31,13 @@ const clientLogos = [
   { src: logoRecicle, alt: "Recicle Ambiental" },
   { src: logoSeca, alt: "Seca Você" },
   { src: logoTasso, alt: "Tasso Lago" },
+  { src: logoCentroOdonto, alt: "Centro Odontológico Filhote" },
+  { src: logoCuraVoce, alt: "Cura Você" },
+  { src: logoDaniUchoa, alt: "Dani Uchoa" },
+  { src: logoDesafioSeca, alt: "Desafio Seca" },
+  { src: logoFinancialMove, alt: "Financial Move" },
+  { src: logoFluency, alt: "Fluency Academy" },
+  { src: logoHalterTech, alt: "HalterTech" },
 ];
 
 /* ─── ANIMATION VARIANTS ─── */
@@ -433,8 +447,9 @@ function LogoCarousel() {
     animate(scrollRef2, 0.4);
   }, []);
 
-  const row1 = clientLogos.slice(0, 5);
-  const row2 = clientLogos.slice(5);
+  const mid = Math.ceil(clientLogos.length / 2);
+  const row1 = clientLogos.slice(0, mid);
+  const row2 = clientLogos.slice(mid);
 
   const renderRow = (ref: React.RefObject<HTMLDivElement | null>, logos: typeof clientLogos) => (
     <div ref={ref} className="flex overflow-hidden gap-[8px] px-0 mx-[28px]" style={{ scrollbarWidth: "none" }}>
