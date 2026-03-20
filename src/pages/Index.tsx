@@ -18,6 +18,8 @@ import logoDaniUchoa from "@/assets/logos/Dani_Uchoa.svg";
 import logoDesafioSeca from "@/assets/logos/Desafio_Seca.svg";
 import logoFinancialMove from "@/assets/logos/Financial_Move.svg";
 import logoFluency from "@/assets/logos/Fluency_Academy.svg";
+import agenciaKwf1 from "@/assets/agencia_kwf_1.png";
+import agenciaKwf2 from "@/assets/agencia_kwf_2.png";
 import logoHalterTech from "@/assets/logos/HalterTech.svg";
 
 const clientLogos = [
@@ -945,12 +947,8 @@ function FAQ() {
 function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const photos = [
-    "Foto equipe 1",
-    "Foto equipe 2",
-    "Reunião estratégica",
-    "Dashboard real",
-    "Escritório KWF",
-    "Evento"
+    { src: agenciaKwf1, alt: "Equipe Agência KWF" },
+    { src: agenciaKwf2, alt: "Agência KWF Eventos" },
   ];
 
   const metrics = [
@@ -990,13 +988,14 @@ function About() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="w-full h-[220px] md:h-[300px] rounded-xl flex items-center justify-center"
-                  style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.08)"
-                  }}
+                  className="w-full h-[220px] md:h-[300px] rounded-xl overflow-hidden"
                 >
-                  <span className="text-muted-foreground text-xs opacity-40">{photos[currentSlide]}</span>
+                  <img
+                    src={photos[currentSlide].src}
+                    alt={photos[currentSlide].alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </motion.div>
               </AnimatePresence>
             </div>
