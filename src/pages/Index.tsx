@@ -467,7 +467,7 @@ function LogoCarousel() {
             boxShadow: "0 0 20px rgba(205,160,102,0.15)"
           }}
         >
-          <img src={logo.src} alt={logo.alt} className="w-[75%] h-[75%] object-contain" loading="lazy" />
+          <img src={logo.src} alt={logo.alt} className="w-full h-full object-cover rounded-full" loading="lazy" />
         </motion.div>
       ))}
     </div>
