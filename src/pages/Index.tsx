@@ -945,58 +945,9 @@ function FAQ() {
 function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const photos = [
-    "Foto equipe 1",
-    "Foto equipe 2",
-    "Reunião estratégica",
-    "Dashboard real",
-    "Escritório KWF",
-    "Evento"
+    { src: (await import("@/assets/agencia_kwf_1.png")).default, alt: "Equipe Agência KWF" },
+    { src: (await import("@/assets/agencia_kwf_2.png")).default, alt: "Agência KWF Eventos" },
   ];
-
-  const metrics = [
-    { target: 20, prefix: "+R$", suffix: "M", label: "investidos em campanhas" },
-    { target: 60, prefix: "+", suffix: "mil", label: "vendas realizadas" },
-    { target: 80, prefix: "+R$", suffix: "M", label: "de faturamento no digital" }
-  ];
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % photos.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + photos.length) % photos.length);
-
-  return (
-    <section id="sobre" className="py-8 md:py-12 px-5 md:px-10">
-      <motion.div
-        className="max-w-[1100px] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-        variants={stagger}
-      >
-        <motion.h2
-          variants={fadeUp}
-          className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-8 text-center"
-          style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
-        >
-          Conheça a <span className="text-gold">Agência KWF</span>
-        </motion.h2>
-
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-          {/* Photos carousel */}
-          <motion.div variants={fadeLeft} className="relative">
-            <div className="overflow-hidden rounded-xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className="w-full h-[220px] md:h-[300px] rounded-xl flex items-center justify-center"
-                  style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.08)"
-                  }}
-                >
-                  <span className="text-muted-foreground text-xs opacity-40">{photos[currentSlide]}</span>
                 </motion.div>
               </AnimatePresence>
             </div>
