@@ -734,13 +734,13 @@ function HowItWorks() {
         <div className="space-y-0">
           {steps.map((s, i) => (
             <motion.div key={s.num} variants={fadeLeft} className="flex gap-4 md:gap-7">
-              <div className="hidden md:block w-[180px] shrink-0">
+              <div className="hidden md:block w-[100px] shrink-0">
                 <motion.div
-                  className="rounded-lg h-[110px] flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-                  whileHover={{ scale: 1.03, borderColor: "rgba(205,160,102,0.3)" }}
+                  className="rounded-lg h-[100px] w-[100px] flex items-center justify-center"
+                  style={{ background: "rgba(205,160,102,0.08)", border: "1px solid rgba(205,160,102,0.20)" }}
+                  whileHover={{ scale: 1.08, borderColor: "rgba(205,160,102,0.4)", boxShadow: "0 0 25px rgba(205,160,102,0.15)" }}
                 >
-                  <span className="text-muted-foreground text-[10px] opacity-40">Imagem</span>
+                  <s.icon size={36} className="text-gold" strokeWidth={1.5} />
                 </motion.div>
               </div>
 
