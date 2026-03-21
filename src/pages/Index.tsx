@@ -24,6 +24,7 @@ import logoHalterTech from "@/assets/logos/HalterTech.svg";
 import imgBaldeFurado from "@/assets/o_balde_furado.png";
 import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
 import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
+import logoKwf from "@/assets/logo-kwf.png";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
@@ -173,16 +174,13 @@ function Navbar() {
       }}
     >
       <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 shrink-0 group">
-          <motion.span
-            className="text-gold font-bold text-lg tracking-tight"
+        <a href="#" className="shrink-0 group">
+          <motion.img
+            src={logoKwf}
+            alt="Agência KWF"
+            className="h-12 w-auto"
             whileHover={{ scale: 1.05 }}
-          >
-            KWF
-          </motion.span>
-          <span className="text-muted-foreground text-[11px] font-medium uppercase tracking-[0.14em] hidden sm:inline group-hover:text-foreground transition-colors duration-300">
-            | Sistemas de Receita
-          </span>
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-7">
@@ -1092,7 +1090,7 @@ function Footer() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-6 mb-6">
           <div>
-            <p className="text-gold text-xl font-bold mb-1.5">KWF</p>
+            <img src={logoKwf} alt="Agência KWF" className="h-14 w-auto mb-1.5" />
             <p className="text-muted-foreground text-[13px] leading-[1.7] max-w-[360px]">
               Sistemas de aquisição e receita previsível para empresas de serviço.
             </p>
