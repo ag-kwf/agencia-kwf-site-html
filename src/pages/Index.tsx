@@ -1,6 +1,6 @@
 import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Search, Zap, Settings, Rocket } from "lucide-react";
 
 import logoInstituto from "@/assets/logos/Instituto_di_Moda_Burgo.svg";
 import logoJF from "@/assets/logos/JF_Ambiental.svg";
@@ -25,6 +25,7 @@ import imgBaldeFurado from "@/assets/o_balde_furado.png";
 import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
 import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
 import logoKwf from "@/assets/logo-kwf.png";
+import heroChip from "@/assets/hero-chip.png";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
@@ -301,11 +302,16 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right: image placeholder */}
-        <div className="w-full md:w-1/2 order-2">
-          <GlassCard className="h-[220px] md:h-[360px] flex items-center justify-center" hoverGlow>
-            <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
-          </GlassCard>
+        {/* Right: hero image */}
+        <div className="w-full md:w-1/2 order-2 flex items-center justify-center">
+          <motion.img
+            src={heroChip}
+            alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
+            className="w-full max-w-[500px] h-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
         </div>
       </div>
     </section>
@@ -676,25 +682,29 @@ function HowItWorks() {
       num: "01",
       title: "Pré-Diagnóstico",
       subtitle: "Análise do funil de aquisição atual",
-      body: "Entenda como está sua aquisição atualmente e como ter clareza do sistema te ajuda a escalar seus resultados."
+      body: "Entenda como está sua aquisição atualmente e como ter clareza do sistema te ajuda a escalar seus resultados.",
+      icon: Search
     },
     {
       num: "02",
       title: "Diagnóstico Raio-X",
       subtitle: "Você descobre onde o dinheiro vaza",
-      body: "Mapeamos seu marketing e mostramos exatamente o que funciona e o que não funciona. Você recebe um relatório visual com o caminho claro."
+      body: "Mapeamos seu marketing e mostramos exatamente o que funciona e o que não funciona. Você recebe um relatório visual com o caminho claro.",
+      icon: Zap
     },
     {
       num: "03",
       title: "Instalação do Sistema",
       subtitle: "Montamos tudo no seu negócio em 30 dias",
-      body: "Funil automatizado, IA no WhatsApp, dashboard de resultado. Tudo rodando sem você precisar virar especialista em nada."
+      body: "Funil automatizado, IA no WhatsApp, dashboard de resultado. Tudo rodando sem você precisar virar especialista em nada.",
+      icon: Settings
     },
     {
       num: "04",
       title: "Aceleração Contínua",
       subtitle: "Seu marketing melhora todo mês",
-      body: "Otimização diária. Testes semanais. O sistema fica mais inteligente e mais rentável a cada ciclo — sem você fazer mais nada."
+      body: "Otimização diária. Testes semanais. O sistema fica mais inteligente e mais rentável a cada ciclo — sem você fazer mais nada.",
+      icon: Rocket
     }
   ];
 
@@ -724,13 +734,13 @@ function HowItWorks() {
         <div className="space-y-0">
           {steps.map((s, i) => (
             <motion.div key={s.num} variants={fadeLeft} className="flex gap-4 md:gap-7">
-              <div className="hidden md:block w-[180px] shrink-0">
+              <div className="hidden md:block w-[100px] shrink-0">
                 <motion.div
-                  className="rounded-lg h-[110px] flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-                  whileHover={{ scale: 1.03, borderColor: "rgba(205,160,102,0.3)" }}
+                  className="rounded-lg h-[100px] w-[100px] flex items-center justify-center"
+                  style={{ background: "rgba(205,160,102,0.08)", border: "1px solid rgba(205,160,102,0.20)" }}
+                  whileHover={{ scale: 1.08, borderColor: "rgba(205,160,102,0.4)", boxShadow: "0 0 25px rgba(205,160,102,0.15)" }}
                 >
-                  <span className="text-muted-foreground text-[10px] opacity-40">Imagem</span>
+                  <s.icon size={36} className="text-gold" strokeWidth={1.5} />
                 </motion.div>
               </div>
 
