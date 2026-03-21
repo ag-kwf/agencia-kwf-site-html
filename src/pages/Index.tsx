@@ -461,11 +461,11 @@ function LogoCarousel() {
   const row2 = clientLogos.slice(mid);
 
   const renderRow = (ref: React.RefObject<HTMLDivElement | null>, logos: typeof clientLogos) => (
-    <div ref={ref} className="flex overflow-hidden gap-[8px] px-0 mx-[28px]" style={{ scrollbarWidth: "none" }}>
+    <div ref={ref} className="flex overflow-hidden gap-[8px] px-[28px] mx-0" style={{ scrollbarWidth: "none" }}>
       {[...logos, ...logos].map((logo, idx) => (
         <motion.div
           key={idx}
-          className="shrink-0 w-[calc((100%-32px)/5)] aspect-square rounded-full flex items-center justify-center transition-all duration-300 overflow-hidden"
+          className="shrink-0 w-[calc((100%_-_32px)/5)] aspect-square rounded-full flex items-center justify-center transition-all duration-300 overflow-hidden"
           style={{
             background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.08)"
