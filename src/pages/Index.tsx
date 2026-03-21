@@ -25,6 +25,7 @@ import imgBaldeFurado from "@/assets/o_balde_furado.png";
 import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
 import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
 import logoKwf from "@/assets/logo-kwf.png";
+import heroChip from "@/assets/hero-chip.png";
 
 const clientLogos = [
   { src: logoInstituto, alt: "Instituto di Moda Burgo" },
