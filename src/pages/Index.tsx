@@ -682,25 +682,29 @@ function HowItWorks() {
       num: "01",
       title: "Pré-Diagnóstico",
       subtitle: "Análise do funil de aquisição atual",
-      body: "Entenda como está sua aquisição atualmente e como ter clareza do sistema te ajuda a escalar seus resultados."
+      body: "Entenda como está sua aquisição atualmente e como ter clareza do sistema te ajuda a escalar seus resultados.",
+      icon: Search
     },
     {
       num: "02",
       title: "Diagnóstico Raio-X",
       subtitle: "Você descobre onde o dinheiro vaza",
-      body: "Mapeamos seu marketing e mostramos exatamente o que funciona e o que não funciona. Você recebe um relatório visual com o caminho claro."
+      body: "Mapeamos seu marketing e mostramos exatamente o que funciona e o que não funciona. Você recebe um relatório visual com o caminho claro.",
+      icon: Zap
     },
     {
       num: "03",
       title: "Instalação do Sistema",
       subtitle: "Montamos tudo no seu negócio em 30 dias",
-      body: "Funil automatizado, IA no WhatsApp, dashboard de resultado. Tudo rodando sem você precisar virar especialista em nada."
+      body: "Funil automatizado, IA no WhatsApp, dashboard de resultado. Tudo rodando sem você precisar virar especialista em nada.",
+      icon: Settings
     },
     {
       num: "04",
       title: "Aceleração Contínua",
       subtitle: "Seu marketing melhora todo mês",
-      body: "Otimização diária. Testes semanais. O sistema fica mais inteligente e mais rentável a cada ciclo — sem você fazer mais nada."
+      body: "Otimização diária. Testes semanais. O sistema fica mais inteligente e mais rentável a cada ciclo — sem você fazer mais nada.",
+      icon: Rocket
     }
   ];
 
