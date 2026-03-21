@@ -780,93 +780,85 @@ function HowItWorks() {
   );
 }
 
-/* ─── DIAGNÓSTICO FORM ─── */
+/* ─── DIAGNÓSTICO CTA ─── */
 function DiagnosticForm() {
-  const [form, setForm] = useState({ name: "", whatsapp: "", email: "", segment: "" });
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const msg = encodeURIComponent(
-      `Olá! Quero agendar meu Pré-Diagnóstico Estratégico.\n\nNome: ${form.name}\nWhatsApp: ${form.whatsapp}\nEmail: ${form.email}\nSegmento: ${form.segment}`
-    );
-    window.open(`https://wa.me/SEU_NUMERO?text=${msg}`, "_blank");
-  };
-
-  const InputField = ({ label, placeholder, value, onChange, type = "text", id }: {
-    label: string; placeholder: string; value: string; onChange: (v: string) => void; type?: string; id: string;
-  }) => (
-    <motion.div
-      animate={focusedField === id ? { scale: 1.01 } : { scale: 1 }}
-      transition={{ duration: 0.2 }}
-    >
-      <label className="block text-muted-foreground text-xs uppercase tracking-[0.14em] mb-1.5 font-medium">{label}</label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onFocus={() => setFocusedField(id)}
-        onBlur={() => setFocusedField(null)}
-        className="w-full rounded-lg text-foreground text-sm outline-none px-[14px] py-[12px] transition-all duration-300"
-        style={{
-          background: "rgba(255,255,255,0.05)",
-          border: `1px solid ${focusedField === id ? "hsl(var(--gold))" : "rgba(255,255,255,0.10)"}`,
-          boxShadow: focusedField === id ? "0 0 20px rgba(205,160,102,0.15)" : "none"
-        }}
-      />
-    </motion.div>
-  );
+  const [showQuiz, setShowQuiz] = useState(false);
 
   return (
-    <section id="diagnostico" className="py-8 md:py-12 px-5 md:px-10">
-      <motion.div
-        className="max-w-[1100px] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-        variants={stagger}
-      >
-        <motion.div variants={fadeUp} className="text-center mb-8">
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3">Próximo passo</p>
-          <h2
-            className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 max-w-[700px] mx-auto"
-            style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
+    <>
+      <section id="diagnostico" className="py-8 md:py-12 px-5 md:px-10">
+        <motion.div
+          className="max-w-[1100px] mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp} className="text-center mb-8">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3">Próximo passo</p>
+            <h2
+              className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground mb-2 max-w-[700px] mx-auto"
+              style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
+            >
+              Descubra em 10 minutos onde pode estar <span className="text-gold">vazando dinheiro</span> da sua operação de aquisição e Marketing.
+            </h2>
+            <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] max-w-[540px] mx-auto">
+              Toque no Botão abaixo e Realize seu Pré-Diagnóstico agora mesmo.
+            </p>
+          </motion.div>
+
+          <motion.div variants={scaleUp} className="text-center">
+            <motion.button
+              onClick={() => setShowQuiz(true)}
+              className="inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[14px] font-semibold uppercase tracking-[0.05em] px-10 py-4 hover:bg-green-hover transition-all shadow-[0_0_30px_rgba(19,150,87,0.2)] hover:shadow-[0_0_50px_rgba(19,150,87,0.35)]"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Quero fazer o diagnóstico
+            </motion.button>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Quiz Popup */}
+      <AnimatePresence>
+        {showQuiz && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            Descubra em 10 minutos onde pode estar <span className="text-gold">vazando dinheiro</span> da sua operação de aquisição e Marketing.
-          </h2>
-          <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] max-w-[540px] mx-auto">
-            Preencha o diagnóstico e receba uma análise completa e possibilidades de melhorias.
-          </p>
-        </motion.div>
-
-        <motion.div variants={scaleUp}>
-          <GlassCard className="max-w-[600px] mx-auto" hoverGlow>
-            <p className="text-foreground text-[15px] font-semibold mb-5 text-center">
-              Preencha as informações abaixo para iniciar o diagnóstico
-            </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <InputField id="name" label="Nome" placeholder="Ex: João Silva" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-              <InputField id="whatsapp" label="WhatsApp" placeholder="(00) 00000-0000" value={form.whatsapp} onChange={(v) => setForm({ ...form, whatsapp: v })} />
-              <InputField id="email" label="Email" placeholder="seu@email.com" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" />
-              <InputField id="segment" label="Segmento" placeholder="Ex: Clínica, Estética, Educação..." value={form.segment} onChange={(v) => setForm({ ...form, segment: v })} />
-
-              <motion.button
-                type="submit"
-                className="w-full rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] py-3.5 hover:bg-green-hover transition-all"
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(19,150,87,0.3)" }}
-                whileTap={{ scale: 0.98 }}
+            <div className="absolute inset-0 bg-black/80" onClick={() => setShowQuiz(false)} />
+            <motion.div
+              className="relative w-full max-w-[620px] rounded-2xl overflow-hidden"
+              style={{ background: "hsl(var(--card))", border: "1px solid rgba(255,255,255,0.08)" }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            >
+              <button
+                onClick={() => setShowQuiz(false)}
+                className="absolute top-3 right-3 z-10 rounded-full p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                style={{ background: "rgba(255,255,255,0.1)" }}
+                aria-label="Fechar"
               >
-                Agendar meu pré-diagnóstico estratégico
-              </motion.button>
-            </form>
-            <p className="text-muted-foreground text-xs text-center mt-4">
-              Você sai com clareza de onde estão os gaps — independente de qualquer decisão de contratação.
-            </p>
-          </GlassCard>
-        </motion.div>
-      </motion.div>
-    </section>
+                <X size={18} />
+              </button>
+              <iframe
+                src="https://kwf-leadscan.lovable.app/quiz/diagnostico-de-marketing-agencia-kwf-09s272"
+                width="100%"
+                height="700"
+                frameBorder="0"
+                style={{ border: "none", borderRadius: "12px", display: "block" }}
+                title="Diagnóstico de Marketing"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
