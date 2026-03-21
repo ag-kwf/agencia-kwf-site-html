@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Search, Zap, Settings, Rocket } from "lucide-react";
 
