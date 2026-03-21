@@ -174,16 +174,13 @@ function Navbar() {
       }}
     >
       <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 shrink-0 group">
-          <motion.span
-            className="text-gold font-bold text-lg tracking-tight"
+        <a href="#" className="shrink-0 group">
+          <motion.img
+            src={logoKwf}
+            alt="Agência KWF"
+            className="h-12 w-auto"
             whileHover={{ scale: 1.05 }}
-          >
-            KWF
-          </motion.span>
-          <span className="text-muted-foreground text-[11px] font-medium uppercase tracking-[0.14em] hidden sm:inline group-hover:text-foreground transition-colors duration-300">
-            | Sistemas de Receita
-          </span>
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-7">
