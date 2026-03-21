@@ -1090,7 +1090,7 @@ function Footer() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-6 mb-6">
           <div>
-            <p className="text-gold text-xl font-bold mb-1.5">KWF</p>
+            <img src={logoKwf} alt="Agência KWF" className="h-14 w-auto mb-1.5" />
             <p className="text-muted-foreground text-[13px] leading-[1.7] max-w-[360px]">
               Sistemas de aquisição e receita previsível para empresas de serviço.
             </p>
