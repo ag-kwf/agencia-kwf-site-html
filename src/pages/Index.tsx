@@ -1,6 +1,6 @@
 import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Search, Zap, Settings, Rocket } from "lucide-react";
 
 import logoInstituto from "@/assets/logos/Instituto_di_Moda_Burgo.svg";
 import logoJF from "@/assets/logos/JF_Ambiental.svg";
