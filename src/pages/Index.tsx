@@ -302,11 +302,16 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right: image placeholder */}
-        <div className="w-full md:w-1/2 order-2">
-          <GlassCard className="h-[220px] md:h-[360px] flex items-center justify-center" hoverGlow>
-            <span className="text-muted-foreground text-xs opacity-40">Imagem Hero</span>
-          </GlassCard>
+        {/* Right: hero image */}
+        <div className="w-full md:w-1/2 order-2 flex items-center justify-center">
+          <motion.img
+            src={heroChip}
+            alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
+            className="w-full max-w-[500px] h-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
         </div>
       </div>
     </section>
