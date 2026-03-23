@@ -280,9 +280,9 @@ function Hero() {
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
             style={{ fontSize: "clamp(18px, 2.8vw, 31px)", textWrap: "balance" }}
           >
-            Transforme seu marketing em um sistema de aquisição e{" "}
-            <span className="text-gold">receita previsível</span>{" "}
-            com metodologia, processo e <span className="text-gold">inteligência</span> em cada etapa
+            Transforme seu Marketing no{" "}
+            <span className="text-gold">Sistema de Aquisição</span>{" "}
+            <span className="text-gold">Inteligente</span> e Previsível.
           </h1>
 
           <p
