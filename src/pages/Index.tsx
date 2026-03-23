@@ -307,7 +307,7 @@ function Hero() {
           <motion.img
             src={heroChip}
             alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
-            className="w-full max-w-[500px] h-auto"
+            className="w-full max-w-[400px] h-auto"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }} />
