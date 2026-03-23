@@ -268,13 +268,7 @@ function Hero() {
         className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
         
         {/* Left: text content */}
-        <div className="w-full md:w-1/2 order-1 text-left">
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles size={12} className="text-gold animate-pulse" />
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold">
-              Sistema de aquisição e receita previsível
-            </p>
-          </div>
+        <div className="w-full md:w-1/2 order-1 text-center md:text-left">
 
           <h1
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
