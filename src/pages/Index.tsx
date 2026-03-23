@@ -263,7 +263,7 @@ function Navbar() {
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="pt-[88px] md:pt-[100px] pb-8 md:pb-12 px-5 md:px-10 overflow-hidden">
+    <section className="relative pt-[88px] md:pt-[100px] pb-8 md:pb-12 px-5 md:px-10 overflow-hidden" style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(19,150,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 30% 40%, rgba(198,165,78,0.06) 0%, transparent 50%)" }}>
       <div
         className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
         
@@ -307,7 +307,7 @@ function Hero() {
           <motion.img
             src={heroChip}
             alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
-            className="w-full max-w-[500px] h-auto"
+            className="w-full max-w-[400px] h-auto"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }} />
