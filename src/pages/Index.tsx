@@ -280,17 +280,17 @@ function Hero() {
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
             style={{ fontSize: "clamp(18px, 2.8vw, 31px)", textWrap: "balance" }}>
             
-            Transforme seu marketing em um sistema de aquisição e{" "}
-            <span className="text-gold">receita previsível</span>{" "}
-            com metodologia, processo e <span className="text-gold">inteligência</span> em cada etapa
-          </h1>
+             Transforme seu Marketing em um Sistema de Aquisição{" "}
+             <span className="text-gold">Previsível</span> com Método e{" "}
+             <span className="text-gold">Inteligência Artificial</span>
+           </h1>
 
-          <p
-            className="text-muted-foreground leading-[1.7] mb-6 md:text-sm text-xs"
-            style={{ textWrap: "balance" as any }}>
-            
-            O que custa caro não é investir em marketing, é crescer sem sistema, sem clareza e sem saber onde o dinheiro está vazando.
-          </p>
+           <p
+             className="text-muted-foreground leading-[1.7] mb-6 md:text-sm text-xs"
+             style={{ textWrap: "balance" as any }}>
+             
+             Escale com sistema, clareza e mapeando todos os gargalos operacionais que podem estar travando os seus resultados.
+           </p>
 
           <div>
             <MagneticButton
