@@ -270,6 +270,10 @@ function Hero() {
         {/* Left: text content */}
         <div className="w-full md:w-1/2 order-1 text-center md:text-left">
 
+          <span className="inline-block text-gold font-semibold uppercase tracking-[0.15em] text-[11px] md:text-xs mb-3 border border-gold/30 rounded-full px-4 py-1.5 bg-gold/5">
+            Empresas que Faturam +R$150mil/Mês
+          </span>
+
           <h1
             className="font-bold leading-[1.1] tracking-[-0.03em] text-foreground mb-4 text-2xl"
             style={{ fontSize: "clamp(18px, 2.8vw, 31px)", textWrap: "balance" }}>
