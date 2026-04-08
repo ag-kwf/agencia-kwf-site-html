@@ -1,18 +1,45 @@
 
 
-## Ajustes na Hero: Reduzir imagem + Adicionar background
+## Hero: Altura maior (desktop/tablet) + Background animado com grid sutil
 
-### Alterações no arquivo `src/pages/Index.tsx`
+### Arquivo: `src/components/sections/Hero.tsx`
 
-**1. Reduzir imagem em 20%**
-- Linha 310: Trocar `max-w-[500px]` por `max-w-[400px]`
+### 1. Aumentar altura apenas em desktop/tablet
 
-**2. Adicionar background na seção Hero para profundidade**
-- Linha 266: Adicionar classes/estilos de background na `<section>` com:
-  - Gradiente radial sutil verde/dourado no centro (baixa opacidade)
-  - Um glow difuso atrás da área de conteúdo
-  - Estilo: `background: radial-gradient(ellipse at 60% 50%, rgba(19,150,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 30% 40%, rgba(198,165,78,0.06) 0%, transparent 50%)`
-  - Posição `relative` para poder adicionar pseudo-elementos se necessário
+- Manter padding mobile como está: `pt-[88px] pb-8`
+- Desktop/tablet: aumentar para `md:pt-[130px] md:pb-20 md:min-h-[80vh]`
+- Mobile fica inalterado
 
-Isso cria uma atmosfera de profundidade sem poluir visualmente, mantendo o estilo dark/premium da página.
+### 2. Background animado com orbes flutuantes
+
+Dois `motion.div` posicionados em `absolute` com `pointer-events-none`:
+
+- **Orbe verde** (direita superior): `bg-primary/15`, `blur-[120px]`, animação flutuante lenta (y sobe/desce, scale pulsa, duração ~10s, loop infinito)
+- **Orbe dourado** (esquerda inferior): `bg-gold/10`, `blur-[100px]`, mesma técnica com timing diferente (~12s)
+
+### 3. Textura de grade sutil (grid pattern)
+
+Adicionar um `div` com background de grid usando CSS repeating pattern:
+
+```css
+background-image: 
+  linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+background-size: 40px 40px;
+```
+
+Posicionado em `absolute inset-0` com opacidade baixa (~0.5), cria uma textura de quadriculado quase imperceptível que adiciona profundidade sem poluir.
+
+### Estrutura final
+
+```text
+<section relative overflow-hidden (md:min-h-[80vh])>
+  ├── div.absolute (grid pattern sutil)
+  ├── motion.div (orbe verde, flutuando)
+  ├── motion.div (orbe dourado, flutuando)
+  └── div.relative (conteúdo existente)
+</section>
+```
+
+Todas as camadas decorativas ficam atrás do conteúdo com `z-0` e `pointer-events-none`.
 
