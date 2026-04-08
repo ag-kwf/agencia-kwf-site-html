@@ -8,7 +8,7 @@ export function Hero() {
       className="relative pt-[88px] md:pt-[130px] pb-8 md:pb-20 px-5 md:px-10 overflow-hidden md:min-h-[80vh] flex items-center"
       style={{
         background:
-          "radial-gradient(ellipse at 60% 50%, rgba(19,150,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 30% 40%, rgba(198,165,78,0.06) 0%, transparent 50%)",
+          "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.4) 100%), radial-gradient(ellipse at 60% 50%, rgba(19,150,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 30% 40%, rgba(198,165,78,0.06) 0%, transparent 50%)",
       }}
     >
       {/* Grid pattern sutil */}
