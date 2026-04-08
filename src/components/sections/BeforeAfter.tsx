@@ -2,21 +2,17 @@ import { motion } from "framer-motion";
 import { fadeUp, fadeLeft, fadeRight, stagger, staggerFast } from "@/lib/animations";
 
 const before = [
-  "Investe em ads sem saber o retorno",
-  "Relatórios soltos que não trazem inteligência ou identificam gargalos",
-  "Lead chegam perdidos e ficam parados",
-  "Operação Manual com nenhum controle",
-  "Resultado depende de sorte e indicação",
-  "Paga R$25–35k em equipe pra fazer o básico",
+  "Lead entra. Ninguém responde. Vai embora.",
+  "Relatório chega. Você não consegue ligar a nenhum cliente.",
+  "Mês bom, mês seco. Sem explicação pra nenhum dos dois.",
+  'Sócio pergunta como está o marketing. Você responde "tá rodando."',
 ];
 
 const after = [
-  "Dashboard com dados reais de retorno",
-  "Mapeamento do fluxo de aquisição, sem perda de lead",
-  "IA responde lead em segundos e qualifica o lead",
-  "Implantação de IA e Automação nos processos",
-  "Funil com previsibilidade de retorno",
-  "Operação de aquisição completa por uma fração do custo",
+  "Contato entra, é qualificado e respondido em minutos — sem você tocar.",
+  "Dashboard mostra de onde veio cada cliente e quanto custou.",
+  "Fluxo previsível de novos clientes todo mês, rastreado do primeiro clique.",
+  "Quando perguntarem, você abre o dashboard e mostra o número.",
 ];
 
 export function BeforeAfter() {
@@ -34,15 +30,8 @@ export function BeforeAfter() {
           className="font-bold leading-[1.2] tracking-[-0.02em] text-foreground text-center mb-2"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
-          Enquanto você ainda sofre para <span className="text-gold">adivinhar</span>...
+          Você sabe o que acontece na sua empresa <span className="text-gold">enquanto você não está olhando?</span>
         </motion.h2>
-        <motion.p
-          variants={fadeUp}
-          className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] text-center mb-8"
-          style={{ textWrap: "balance" }}
-        >
-          o faturamento que poderia estar no seu bolso está escorrendo.
-        </motion.p>
 
         <div className="grid md:grid-cols-[4fr_5fr] gap-4">
           <motion.div
@@ -55,7 +44,7 @@ export function BeforeAfter() {
               className="inline-block text-[11px] font-semibold uppercase tracking-[0.08em] px-3 py-1 rounded-md mb-4"
               style={{ background: "rgba(239,68,68,0.12)", color: "#EF4444" }}
             >
-              Como é hoje
+              Sem sistema
             </span>
             <motion.ul className="space-y-2.5" variants={staggerFast} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               {before.map((t) => (
