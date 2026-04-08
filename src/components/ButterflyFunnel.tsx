@@ -3,44 +3,32 @@ import { useRef } from "react";
 import { Target, Flame, Zap, Rocket, Megaphone } from "lucide-react";
 
 const phases = [
-  { label: "Aquisição", icon: Target, color: "#139657" },
-  { label: "Aquecimento", icon: Flame, color: "#3aaa6a" },
-  { label: "Ação", icon: Zap, color: "#CDA066" },
-  { label: "Ativação", icon: Rocket, color: "#3aaa6a" },
-  { label: "Ampliação", icon: Megaphone, color: "#139657" },
+  { label: "Aquisição", icon: Target, color: "#CDA066" },
+  { label: "Aquecimento", icon: Flame, color: "#CDA066" },
+  { label: "Ação", icon: Zap, color: "#139657" },
+  { label: "Ativação", icon: Rocket, color: "#CDA066" },
+  { label: "Ampliação", icon: Megaphone, color: "#CDA066" },
 ];
 
-// Bowtie SVG paths: wide → narrow → center → narrow → wide
-// viewBox 0 0 1000 260
 const shapePaths = [
-  // Aquisição - large chevron left
-  "M 10,20 L 170,20 L 200,130 L 170,240 L 10,240 Z",
-  // Aquecimento - medium trapezoid
-  "M 210,50 L 370,50 L 400,130 L 370,210 L 210,210 L 240,130 Z",
-  // Ação - narrow diamond center
-  "M 410,80 L 530,80 L 590,130 L 530,180 L 410,180 L 470,130 Z",
-  // Ativação - medium trapezoid (mirror)
-  "M 600,50 L 760,50 L 790,130 L 760,210 L 600,210 L 630,130 Z",
-  // Ampliação - large chevron right
-  "M 800,20 L 990,20 L 990,240 L 800,240 L 830,130 Z",
+  // Aquisição - large chevron left (wide)
+  "M 10,10 L 210,10 L 240,130 L 210,250 L 10,250 Z",
+  // Aquecimento - trapezoid converging
+  "M 250,45 L 400,45 L 430,130 L 400,215 L 250,215 L 280,130 Z",
+  // Ação - compact center diamond
+  "M 440,75 L 560,75 L 590,130 L 560,185 L 440,185 L 470,130 Z",
+  // Ativação - trapezoid diverging (mirror)
+  "M 600,45 L 750,45 L 720,130 L 750,215 L 600,215 L 630,130 Z",
+  // Ampliação - large chevron right (wide)
+  "M 790,10 L 990,10 L 990,250 L 790,250 L 760,130 Z",
 ];
 
-// Icon positions (cx, cy) for each phase
 const iconPositions = [
-  { x: 100, y: 130 },
-  { x: 300, y: 130 },
-  { x: 500, y: 130 },
-  { x: 700, y: 130 },
-  { x: 900, y: 130 },
-];
-
-// Label positions
-const labelPositions = [
-  { x: 100, y: 130 },
-  { x: 300, y: 130 },
-  { x: 500, y: 130 },
-  { x: 700, y: 130 },
-  { x: 900, y: 130 },
+  { x: 120, y: 130 },
+  { x: 335, y: 130 },
+  { x: 515, y: 130 },
+  { x: 685, y: 130 },
+  { x: 890, y: 130 },
 ];
 
 export function ButterflyFunnel() {
@@ -55,11 +43,6 @@ export function ButterflyFunnel() {
         style={{ maxHeight: "320px" }}
       >
         <defs>
-          <linearGradient id="grad-green-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#139657" />
-            <stop offset="50%" stopColor="#CDA066" />
-            <stop offset="100%" stopColor="#139657" />
-          </linearGradient>
           {phases.map((phase, i) => (
             <linearGradient key={`fill-${i}`} id={`fill-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={phase.color} stopOpacity="0.25" />
@@ -82,7 +65,6 @@ export function ButterflyFunnel() {
 
           return (
             <g key={phase.label}>
-              {/* Shape */}
               <motion.path
                 d={shapePaths[i]}
                 fill={`url(#fill-${i})`}
@@ -98,7 +80,6 @@ export function ButterflyFunnel() {
                 filter={isInView ? "url(#glow)" : undefined}
               />
 
-              {/* Icon as foreignObject */}
               <motion.foreignObject
                 x={pos.x - 14}
                 y={pos.y - 30}
@@ -117,10 +98,9 @@ export function ButterflyFunnel() {
                 </div>
               </motion.foreignObject>
 
-              {/* Label */}
               <motion.text
-                x={labelPositions[i].x}
-                y={labelPositions[i].y + 16}
+                x={pos.x}
+                y={pos.y + 16}
                 textAnchor="middle"
                 className="text-[11px] font-semibold uppercase"
                 style={{ letterSpacing: "0.08em" }}
