@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { fadeUp, fadeLeft, fadeRight, stagger, staggerFast } from "@/lib/animations";
-import agenciaKwf1 from "@/assets/agencia_kwf_1.png";
-import agenciaKwf2 from "@/assets/agencia_kwf_2.png";
+import agenciaKwf1 from "@/assets/agencia_kwf_1.webp";
+import agenciaKwf2 from "@/assets/agencia_kwf_2.webp";
 
 const photos = [
   { src: agenciaKwf1, alt: "Equipe Agência KWF" },
