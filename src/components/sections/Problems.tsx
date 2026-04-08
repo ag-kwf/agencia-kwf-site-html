@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { fadeUp, fadeLeft, fadeRight, stagger } from "@/lib/animations";
-import imgBaldeFurado from "@/assets/o_balde_furado.png";
-import imgCarroSemPainel from "@/assets/o_carro_sem_painel.png";
-import imgTrabalhoManual from "@/assets/o_trabalho_manual.png";
+import imgBaldeFurado from "@/assets/o_balde_furado.webp";
+import imgCarroSemPainel from "@/assets/o_carro_sem_painel.webp";
+import imgTrabalhoManual from "@/assets/o_trabalho_manual.webp";
 
 const cards = [
   {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logoKwf from "@/assets/logo-kwf.png";
+import logoKwf from "@/assets/logo-kwf.webp";
 
 export function Footer() {
   return (
@@ -14,7 +14,7 @@ export function Footer() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-6 mb-6">
           <div>
-            <img src={logoKwf} alt="Agência KWF" className="h-14 w-auto mb-1.5" />
+            <img src={logoKwf} alt="Agência KWF" className="h-14 w-auto mb-1.5" width={56} height={56} />
             <p className="text-muted-foreground text-[13px] leading-[1.7] max-w-[360px]">
               Sistemas de aquisição e receita previsível para empresas de serviço.
             </p>

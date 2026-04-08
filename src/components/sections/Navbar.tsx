@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { MagneticButton } from "@/components/MagneticButton";
-import logoKwf from "@/assets/logo-kwf.png";
+import logoKwf from "@/assets/logo-kwf.webp";
 
 const links = [
   { label: "Como funciona", href: "#como-funciona" },
@@ -40,6 +40,8 @@ export function Navbar() {
             src={logoKwf}
             alt="Agência KWF"
             className="h-12 w-auto"
+            width={48}
+            height={48}
             whileHover={{ scale: 1.05 }}
           />
         </a>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/MagneticButton";
-import heroChip from "@/assets/hero-chip.png";
+import heroChip from "@/assets/hero-chip.webp";
 
 export function Hero() {
   return (
@@ -74,6 +74,9 @@ export function Hero() {
             src={heroChip}
             alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
             className="w-full max-w-[200px] md:max-w-[280px] h-auto"
+            width={560}
+            height={504}
+            fetchPriority="high"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
