@@ -1,57 +1,29 @@
 
 
-## Redesign do Funil Borboleta — Estilo Gravata-Borboleta (Bowtie)
+## Ajustes no Funil Borboleta — Padronizar formas + Inverter cores
 
-### Problema atual
-O funil atual usa clip-paths simples que criam formas trapezoidais desconectadas e sem impacto visual. O modelo de referência mostra um formato de **gravata-borboleta (bowtie)** muito mais elegante e profissional.
+### Problemas atuais
+- As formas intermediárias (Aquecimento/Ativação) e a central (Ação) têm formatos irregulares com pontas internas (losango) que ficam estranhos
+- As formas das pontas (Aquisição/Ampliação) são pequenas demais em relação ao centro
+- Cores: atualmente verde nas pontas e dourado no centro — inverter
 
-### Novo design baseado na referência
+### Alterações no `src/components/ButterflyFunnel.tsx`
 
-O funil será redesenhado usando **SVG** em vez de clip-paths CSS, para ter controle total sobre o formato. A estrutura visual será:
+**1. Redesenhar os SVG paths com proporções corretas**
 
-```text
- ┌─────────┐  ┌─────┐  ╔═╗  ┌─────┐  ┌─────────┐
- │         ├──┤     ├──╢ ╠──┤     ├──┤         │
- │ AQUIS.  │  │AQUEC│  ║A║  │ATIV.│  │ AMPLI.  │
- │         ├──┤     ├──╢ ╠──┤     ├──┤         │
- └─────────┘  └─────┘  ╚═╝  └─────┘  └─────────┘
-```
+Novo layout simétrico com formas consistentes:
+- **Aquisição / Ampliação** (pontas): chevrons grandes, altura total (y: 10 → 250), largura ~220px
+- **Aquecimento / Ativação** (intermediários): trapezoides padronizados, mesma forma espelhada, altura reduzida proporcionalmente (y: 45 → 215)
+- **Ação** (centro): retângulo estreito/losango compacto, bem definido (y: 75 → 185)
 
-- **Aquisição** e **Ampliação**: grandes retângulos com borda arredondada e seta apontando para o centro
-- **Aquecimento** e **Ativação**: trapezoides médios convergindo/divergindo
-- **Ação**: forma estreita/estrela no centro, ponto focal
+Todas as formas terão bordas retas e limpas, sem pontas internas irregulares nos trapezoides.
 
-### Adaptação à identidade visual
+**2. Inverter as cores**
 
-- Fundo escuro (#0F0F0F) com bordas douradas (#CDA066) e verde (#139657)
-- Cada fase terá borda com gradiente (verde para o lado esquerdo, dourado para o centro, transição para roxo/magenta no lado direito adaptado para verde/dourado da marca)
-- Na referência há cores variadas (ciano, verde, laranja, rosa, roxo) — adaptaremos para um gradiente **verde → dourado** da esquerda para a direita, mantendo a identidade KWF
-- Glow sutil nas bordas quando a fase está ativa
-- Labels em uppercase, tracking largo, cor dourada quando ativo
+- Fases 1, 2, 4, 5 (Aquisição, Aquecimento, Ativação, Ampliação): **Dourado (#CDA066)**
+- Fase 3 (Ação - centro): **Verde (#139657)** — destaque especial
 
-### Implementação técnica
+**3. Reposicionar ícones e labels**
 
-**Arquivo:** `src/components/ButterflyFunnel.tsx` — reescrita completa
-
-1. **SVG inline** com 5 formas de path desenhadas para criar o formato bowtie:
-   - Formas externas (Aquisição/Ampliação): retângulos grandes com borda chevron
-   - Formas intermediárias (Aquecimento/Ativação): trapezoides menores
-   - Forma central (Ação): losango/estrela compacta
-
-2. **Animação scroll-triggered** mantida com `useInView` e delays escalonados (0.3s por fase)
-
-3. **Cada fase** terá:
-   - Stroke animado (de transparente para dourado/verde)
-   - Fill com gradiente sutil quando ativo
-   - Label posicionado dentro ou abaixo da forma
-   - Ícone Lucide centralizado na forma
-
-4. **Responsivo**: no mobile, SVG escala proporcionalmente com `viewBox`; sem necessidade de scroll horizontal
-
-### Paleta de cores das bordas (gradiente da marca)
-- Fase 1 (Aquisição): verde (#139657)
-- Fase 2 (Aquecimento): verde→dourado
-- Fase 3 (Ação): dourado (#CDA066) com glow
-- Fase 4 (Ativação): dourado→verde
-- Fase 5 (Ampliação): verde (#139657)
+Ajustar as posições X dos ícones e labels para o centro de cada nova forma.
 
