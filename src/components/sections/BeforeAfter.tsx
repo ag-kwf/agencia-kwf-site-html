@@ -33,7 +33,7 @@ export function BeforeAfter() {
           Você sabe o que acontece na sua empresa <span className="text-gold">enquanto você não está olhando?</span>
         </motion.h2>
 
-        <div className="grid md:grid-cols-[4fr_5fr] gap-4">
+        <div className="grid md:grid-cols-2 gap-4 mt-8">
           <motion.div
             variants={fadeLeft}
             className="rounded-xl p-5 md:p-6"
