@@ -40,6 +40,8 @@ export function Navbar() {
             src={logoKwf}
             alt="Agência KWF"
             className="h-12 w-auto"
+            width={48}
+            height={48}
             whileHover={{ scale: 1.05 }}
           />
         </a>
