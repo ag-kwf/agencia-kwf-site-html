@@ -5,13 +5,39 @@ import heroChip from "@/assets/hero-chip.png";
 export function Hero() {
   return (
     <section
-      className="relative pt-[88px] md:pt-[100px] pb-8 md:pb-12 px-5 md:px-10 overflow-hidden"
+      className="relative pt-[88px] md:pt-[130px] pb-8 md:pb-20 px-5 md:px-10 overflow-hidden md:min-h-[80vh] flex items-center"
       style={{
         background:
           "radial-gradient(ellipse at 60% 50%, rgba(19,150,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 30% 40%, rgba(198,165,78,0.06) 0%, transparent 50%)",
       }}
     >
-      <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+      {/* Grid pattern sutil */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-50"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      {/* Orbe verde flutuante */}
+      <motion.div
+        className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full pointer-events-none"
+        style={{ background: "hsl(var(--primary) / 0.15)", filter: "blur(120px)" }}
+        animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+      />
+
+      {/* Orbe dourado flutuante */}
+      <motion.div
+        className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] md:w-[350px] md:h-[350px] rounded-full pointer-events-none"
+        style={{ background: "hsl(var(--gold) / 0.10)", filter: "blur(100px)" }}
+        animate={{ y: [0, 30, 0], scale: [1, 1.15, 1] }}
+        transition={{ duration: 12, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+      />
+
+      <div className="relative z-10 max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
         <div className="w-full md:w-1/2 order-1 text-center md:text-left">
           <span className="inline-block text-gold font-semibold uppercase tracking-[0.15em] text-[11px] md:text-xs mb-3 border border-gold/30 rounded-full px-4 py-1.5 bg-gold/5">
             Empresas que Faturam +R$150mil/Mês
