@@ -13,7 +13,7 @@ export function Results() {
         variants={stagger}
       >
         <motion.p variants={fadeUp} className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold mb-3 text-center">
-          Nosso método
+          Clareza no processo
         </motion.p>
         <motion.h2
           variants={fadeUp}
