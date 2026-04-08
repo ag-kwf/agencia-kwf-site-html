@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logoKwf from "@/assets/logo-kwf.png";
+import logoKwf from "@/assets/logo-kwf.webp";
 
 export function Footer() {
   return (
