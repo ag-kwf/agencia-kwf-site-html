@@ -23,7 +23,7 @@ export function Results() {
           O funil que transforma investimento em <span className="text-gold">receita previsível</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-10 text-center" style={{ textWrap: "balance" }}>
-          5 fases integradas que cobrem toda a jornada — da aquisição à ampliação.
+          5 fases integradas que cobrem toda a jornada da aquisição à ampliação.
         </motion.p>
 
         <motion.div variants={fadeUp}>
