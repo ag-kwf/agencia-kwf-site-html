@@ -1,54 +1,57 @@
 
 
-## Funil Borboleta Horizontal — Substituir vídeo na seção Resultados
+## Redesign do Funil Borboleta — Estilo Gravata-Borboleta (Bowtie)
 
-### Conceito visual
+### Problema atual
+O funil atual usa clip-paths simples que criam formas trapezoidais desconectadas e sem impacto visual. O modelo de referência mostra um formato de **gravata-borboleta (bowtie)** muito mais elegante e profissional.
 
-O funil borboleta fica na horizontal: começa largo à esquerda, afunila no centro e expande à direita. As 5 fases ficam lado a lado, como um diamante/ampulheta deitado.
+### Novo design baseado na referência
+
+O funil será redesenhado usando **SVG** em vez de clip-paths CSS, para ter controle total sobre o formato. A estrutura visual será:
 
 ```text
-┌──┐                              ┌──┐
-│  │──┐                      ┌──│  │
-│ AQ │  ──┐            ┌──  │ AM │
-│  │  │AQC│──┐    ┌──│ATV│  │  │
-│  │  │   │AÇÃ│──│   │  │  │
-│  │  │   │──┘    └──│   │  │  │
-│  │  ──┘            └──  │  │
-│  │──┘                      └──│  │
-└──┘                              └──┘
- AQ    AQC    AÇÃO    ATV     AMP
+ ┌─────────┐  ┌─────┐  ╔═╗  ┌─────┐  ┌─────────┐
+ │         ├──┤     ├──╢ ╠──┤     ├──┤         │
+ │ AQUIS.  │  │AQUEC│  ║A║  │ATIV.│  │ AMPLI.  │
+ │         ├──┤     ├──╢ ╠──┤     ├──┤         │
+ └─────────┘  └─────┘  ╚═╝  └─────┘  └─────────┘
 ```
 
-Fases da esquerda para a direita:
-1. **Aquisição** — largo
-2. **Aquecimento** — médio
-3. **Ação** — estreito (centro)
-4. **Ativação** — médio
-5. **Ampliação** — largo
+- **Aquisição** e **Ampliação**: grandes retângulos com borda arredondada e seta apontando para o centro
+- **Aquecimento** e **Ativação**: trapezoides médios convergindo/divergindo
+- **Ação**: forma estreita/estrela no centro, ponto focal
 
-### Como funciona a animação
+### Adaptação à identidade visual
 
-- Ao scrollar pela seção, cada fase é destacada sequencialmente da esquerda para a direita usando `whileInView` do Framer Motion com delays escalonados
-- Fase ativa: gradiente dourado, glow, escala levemente maior, label branco
-- Fase inativa: cor neutra (`rgba(255,255,255,0.08)`), opacidade reduzida
-- No mobile: o funil fica em scroll horizontal ou empilha verticalmente (a decidir pelo espaço)
+- Fundo escuro (#0F0F0F) com bordas douradas (#CDA066) e verde (#139657)
+- Cada fase terá borda com gradiente (verde para o lado esquerdo, dourado para o centro, transição para roxo/magenta no lado direito adaptado para verde/dourado da marca)
+- Na referência há cores variadas (ciano, verde, laranja, rosa, roxo) — adaptaremos para um gradiente **verde → dourado** da esquerda para a direita, mantendo a identidade KWF
+- Glow sutil nas bordas quando a fase está ativa
+- Labels em uppercase, tracking largo, cor dourada quando ativo
 
-### Arquivos
+### Implementação técnica
 
-**Novo:** `src/components/ButterflyFunnel.tsx`
-- 5 segmentos usando `clip-path` polygon para criar o formato borboleta horizontal
-- Cada segmento é um `motion.div` com animação `whileInView` + delay incremental (0s, 0.3s, 0.6s, 0.9s, 1.2s)
-- Ícones opcionais por fase (Target, Flame, Zap, Rocket, Megaphone)
-- Labels abaixo de cada segmento
-- Responsivo: no mobile, segmentos ficam menores ou com scroll horizontal
+**Arquivo:** `src/components/ButterflyFunnel.tsx` — reescrita completa
 
-**Editado:** `src/components/sections/Results.tsx`
-- Remove o `<video>` e `GlassCard`
-- Insere `<ButterflyFunnel />`
-- Atualiza headline/sub para contexto do funil
+1. **SVG inline** com 5 formas de path desenhadas para criar o formato bowtie:
+   - Formas externas (Aquisição/Ampliação): retângulos grandes com borda chevron
+   - Formas intermediárias (Aquecimento/Ativação): trapezoides menores
+   - Forma central (Ação): losango/estrela compacta
 
-### Estilo
-- Fase inativa: `rgba(255,255,255,0.08)`, borda `rgba(255,255,255,0.1)`
-- Fase ativa: gradiente gold, `boxShadow` glow dourado
-- Consistente com design dark/premium existente
+2. **Animação scroll-triggered** mantida com `useInView` e delays escalonados (0.3s por fase)
+
+3. **Cada fase** terá:
+   - Stroke animado (de transparente para dourado/verde)
+   - Fill com gradiente sutil quando ativo
+   - Label posicionado dentro ou abaixo da forma
+   - Ícone Lucide centralizado na forma
+
+4. **Responsivo**: no mobile, SVG escala proporcionalmente com `viewBox`; sem necessidade de scroll horizontal
+
+### Paleta de cores das bordas (gradiente da marca)
+- Fase 1 (Aquisição): verde (#139657)
+- Fase 2 (Aquecimento): verde→dourado
+- Fase 3 (Ação): dourado (#CDA066) com glow
+- Fase 4 (Ativação): dourado→verde
+- Fase 5 (Ampliação): verde (#139657)
 
