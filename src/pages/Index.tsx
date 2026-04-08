@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation } from "framer-motion";
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { Problems } from "@/components/sections/Problems";
 
-const Problems = lazy(() => import("@/components/sections/Problems").then(m => ({ default: m.Problems })));
 const SocialProof = lazy(() => import("@/components/sections/SocialProof").then(m => ({ default: m.SocialProof })));
 const BeforeAfter = lazy(() => import("@/components/sections/BeforeAfter").then(m => ({ default: m.BeforeAfter })));
 const Results = lazy(() => import("@/components/sections/Results").then(m => ({ default: m.Results })));
@@ -15,26 +15,22 @@ const Footer = lazy(() => import("@/components/sections/Footer").then(m => ({ de
 
 export default function LandingPage() {
   return (
-    <motion.div
-      className="min-h-screen bg-background text-foreground"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-    >
-      <Navbar />
-      <Hero />
-      <Suspense fallback={null}>
+    <LazyMotion features={domAnimation}>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navbar />
+        <Hero />
         <Problems />
-        <SocialProof />
-        <BeforeAfter />
-        <Results />
-        <HowItWorks />
-        <DiagnosticForm />
-        <FAQ />
-        <About />
-        <Footer />
-      </Suspense>
-    </motion.div>
+        <Suspense fallback={null}>
+          <SocialProof />
+          <BeforeAfter />
+          <Results />
+          <HowItWorks />
+          <DiagnosticForm />
+          <FAQ />
+          <About />
+          <Footer />
+        </Suspense>
+      </div>
+    </LazyMotion>
   );
 }

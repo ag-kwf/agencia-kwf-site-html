@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MagneticButton } from "@/components/MagneticButton";
-import heroChip from "@/assets/hero-chip.webp";
 
 export function Hero() {
   return (
@@ -22,7 +21,7 @@ export function Hero() {
       />
 
       {/* Orbe verde flutuante */}
-      <motion.div
+      <m.div
         className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full pointer-events-none"
         style={{ background: "hsl(var(--primary) / 0.15)", filter: "blur(120px)" }}
         animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
@@ -30,7 +29,7 @@ export function Hero() {
       />
 
       {/* Orbe dourado flutuante */}
-      <motion.div
+      <m.div
         className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] md:w-[350px] md:h-[350px] rounded-full pointer-events-none"
         style={{ background: "hsl(var(--gold) / 0.10)", filter: "blur(100px)" }}
         animate={{ y: [0, 30, 0], scale: [1, 1.15, 1] }}
@@ -70,8 +69,8 @@ export function Hero() {
         </div>
 
         <div className="w-full md:w-1/2 order-2 flex items-center justify-center">
-          <motion.img
-            src={heroChip}
+          <m.img
+            src="/hero-chip.webp"
             alt="Sistema KWF - Marketing, Vendas, Tecnologia, Digital"
             className="w-full max-w-[200px] md:max-w-[280px] h-auto"
             width={560}
