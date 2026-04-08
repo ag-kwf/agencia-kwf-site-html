@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Flame, Zap, Rocket, Megaphone } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const phases = [
   { label: "Aquisição", icon: Target, color: "#CDA066" },
@@ -10,38 +11,65 @@ const phases = [
   { label: "Ampliação", icon: Megaphone, color: "#CDA066" },
 ];
 
-// Bowtie shape: large rectangles on edges, smaller toward center — NO arrow tips
-const shapePaths = [
-  // Aquisição - large rectangle (rounded via rx on rect won't work with path, so straight edges)
+// Horizontal layout (desktop/tablet)
+const hPaths = [
   "M 20,10 L 200,10 L 200,250 L 20,250 Z",
-  // Aquecimento - medium rectangle, narrower height
   "M 215,40 L 390,40 L 390,220 L 215,220 Z",
-  // Ação - compact center rectangle
   "M 405,70 L 595,70 L 595,190 L 405,190 Z",
-  // Ativação - medium rectangle (mirror)
   "M 610,40 L 785,40 L 785,220 L 610,220 Z",
-  // Ampliação - large rectangle
   "M 800,10 L 980,10 L 980,250 L 800,250 Z",
 ];
-
-const iconPositions = [
+const hIcons = [
   { x: 110, y: 115 },
   { x: 302, y: 115 },
   { x: 500, y: 115 },
   { x: 698, y: 115 },
   { x: 890, y: 115 },
 ];
+const hLines = [
+  { x1: 200, x2: 215, y: 130 },
+  { x1: 390, x2: 405, y: 130 },
+  { x1: 595, x2: 610, y: 130 },
+  { x1: 785, x2: 800, y: 130 },
+];
+
+// Vertical layout (mobile)
+const vPaths = [
+  "M 10,20 L 250,20 L 250,100 L 10,100 Z",
+  "M 30,115 L 230,115 L 230,195 L 30,195 Z",
+  "M 55,210 L 205,210 L 205,290 L 55,290 Z",
+  "M 30,305 L 230,305 L 230,385 L 30,385 Z",
+  "M 10,400 L 250,400 L 250,480 L 10,480 Z",
+];
+const vIcons = [
+  { x: 130, y: 48 },
+  { x: 130, y: 143 },
+  { x: 130, y: 238 },
+  { x: 130, y: 333 },
+  { x: 130, y: 428 },
+];
+const vLines = [
+  { y1: 100, y2: 115, x: 130 },
+  { y1: 195, y2: 210, x: 130 },
+  { y1: 290, y2: 305, x: 130 },
+  { y1: 385, y2: 400, x: 130 },
+];
 
 export function ButterflyFunnel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.4 });
+  const isMobile = useIsMobile();
+
+  const shapePaths = isMobile ? vPaths : hPaths;
+  const iconPositions = isMobile ? vIcons : hIcons;
+  const viewBox = isMobile ? "0 0 260 500" : "0 0 1000 300";
 
   return (
     <div ref={containerRef} className="w-full max-w-[960px] mx-auto px-4">
       <svg
-        viewBox="0 0 1000 300"
+        viewBox={viewBox}
         className="w-full h-auto"
-        style={{ maxHeight: "320px" }}
+        style={{ maxHeight: isMobile ? "520px" : "320px" }}
       >
         <defs>
           {phases.map((phase, i) => (
@@ -71,7 +99,6 @@ export function ButterflyFunnel() {
                 fill={`url(#fill-${i})`}
                 stroke={phase.color}
                 strokeWidth="2"
-                rx="8"
                 initial={{ opacity: 0.15, strokeOpacity: 0.2, fillOpacity: 0 }}
                 animate={
                   isInView
@@ -82,20 +109,34 @@ export function ButterflyFunnel() {
                 filter={isInView ? "url(#glow)" : undefined}
               />
 
-              {/* Connecting lines between shapes */}
               {i < 4 && (
-                <motion.line
-                  x1={[200, 390, 595, 785][i]}
-                  y1={130}
-                  x2={[215, 405, 610, 800][i]}
-                  y2={130}
-                  stroke={phase.color}
-                  strokeWidth="1.5"
-                  strokeDasharray="4 3"
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 0.5 } : { opacity: 0 }}
-                  transition={{ delay: delay + 0.3, duration: 0.4 }}
-                />
+                isMobile ? (
+                  <motion.line
+                    x1={vLines[i].x}
+                    y1={vLines[i].y1}
+                    x2={vLines[i].x}
+                    y2={vLines[i].y2}
+                    stroke={phase.color}
+                    strokeWidth="1.5"
+                    strokeDasharray="4 3"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 0.5 } : { opacity: 0 }}
+                    transition={{ delay: delay + 0.3, duration: 0.4 }}
+                  />
+                ) : (
+                  <motion.line
+                    x1={hLines[i].x1}
+                    y1={hLines[i].y}
+                    x2={hLines[i].x2}
+                    y2={hLines[i].y}
+                    stroke={phase.color}
+                    strokeWidth="1.5"
+                    strokeDasharray="4 3"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 0.5 } : { opacity: 0 }}
+                    transition={{ delay: delay + 0.3, duration: 0.4 }}
+                  />
+                )
               )}
 
               <motion.foreignObject
