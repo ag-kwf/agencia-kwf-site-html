@@ -69,7 +69,7 @@ export function Problems() {
                     </div>
                     <div className="w-full md:w-1/2">
                       <div className="rounded-lg h-[140px] md:h-[180px] overflow-hidden">
-                        <img src={c.image} alt={c.title} className="w-full h-full object-cover rounded-lg" />
+                        <img src={c.image} alt={c.title} width={600} height={400} className="w-full h-full object-cover rounded-lg" />
                       </div>
                     </div>
                   </div>

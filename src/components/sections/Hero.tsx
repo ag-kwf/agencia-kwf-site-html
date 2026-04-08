@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MagneticButton } from "@/components/MagneticButton";
-import heroChip from "@/assets/hero-chip.webp";
 
 export function Hero() {
   return (
