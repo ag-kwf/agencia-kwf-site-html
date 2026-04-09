@@ -86,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <head>
+        {/* deploy-test-v1 */}
         <GTMHead />
         <SchemaMarkup />
       </head>
