@@ -27,6 +27,16 @@ jobs:
       - name: Build static site
         run: npm run build
 
+      - name: Add cPanel deploy config
+        run: |
+          cat > ./out/.cpanel.yml << 'EOF'
+          ---
+          deployment:
+            tasks:
+              - export DEPLOYPATH=/home/agenciakwf/public_html/
+              - /bin/cp -R * $DEPLOYPATH
+          EOF
+
       - name: Deploy to branch
         uses: peaceiris/actions-gh-pages@v4
         with:
