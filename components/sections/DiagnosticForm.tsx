@@ -117,10 +117,16 @@ export function DiagnosticForm() {
                 <X size={18} />
               </button>
               <iframe
-                src="https://kwf-leadscan.lovable.app/quiz/diagnostico-de-marketing-agencia-kwf-09s272"
+                src="https://new-leadscan.lovable.app/quiz/site-raio-x"
                 width="100%"
                 height="700"
-                style={{ border: "none", borderRadius: "12px", display: "block" }}
+                style={{
+                  border: "none",
+                  borderRadius: "12px",
+                  maxWidth: "600px",
+                  margin: "0 auto",
+                  display: "block",
+                }}
                 title="Diagnóstico de Marketing"
               />
             </motion.div>
