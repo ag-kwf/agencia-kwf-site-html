@@ -6,7 +6,7 @@ import { ButterflyFunnel } from "@/components/ButterflyFunnel";
 
 export function Results() {
   return (
-    <section id="como-funciona" aria-label="Como funciona o Sistema KWF" className="py-12 md:py-20 px-5 md:px-10">
+    <section id="como-funciona" aria-label="Como funciona o Sistema KWF" className="pt-12 md:pt-20 pb-6 md:pb-10 px-5 md:px-10" style={{ background: "transparent" }}>
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"

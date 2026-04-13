@@ -19,7 +19,7 @@ const after = [
 
 export function BeforeAfter() {
   return (
-    <section aria-label="Antes e depois do Sistema KWF" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section aria-label="Antes e depois do Sistema KWF" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "transparent" }}>
       <motion.div
         className="max-w-[1000px] mx-auto"
         initial="hidden"

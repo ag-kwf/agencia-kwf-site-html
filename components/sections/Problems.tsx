@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { GlassCard } from "@/components/GlassCard";
-import { fadeUp, fadeLeft, fadeRight, stagger } from "@/lib/animations";
-import Image from "next/image";
+import { EliteCard } from "@/components/ui/elite-card";
+import { fadeUp, stagger } from "@/lib/animations";
 
 const cards = [
   {
@@ -28,7 +27,7 @@ const cards = [
 
 export function Problems() {
   return (
-    <section id="problemas" aria-label="Problemas que resolvemos" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section id="problemas" aria-label="Problemas que resolvemos" className="py-12 md:py-20 px-5 md:px-10">
       <motion.div
         className="max-w-[1100px] mx-auto"
         initial="hidden"
@@ -41,43 +40,26 @@ export function Problems() {
         </motion.p>
         <motion.h2
           variants={fadeUp}
-          className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-8 md:mb-10 text-center max-w-[700px] mx-auto"
+          className="font-bold leading-[1.15] tracking-[-0.02em] text-foreground mb-10 md:mb-14 text-center max-w-[700px] mx-auto"
           style={{ fontSize: "clamp(20px, 3vw, 34px)", textWrap: "balance" }}
         >
           Três problemas que <span className="text-gold">travam o crescimento</span> de 7 em cada 10 empresas.
         </motion.h2>
 
-        <div className="space-y-4">
-          {cards.map((c, i) => {
-            const isReversed = i % 2 === 1;
-            const variant = i % 2 === 0 ? fadeLeft : fadeRight;
-            return (
-              <motion.article key={c.title} variants={variant}>
-                <GlassCard hoverGold>
-                  <div className={`flex flex-col md:flex-row gap-5 items-center ${isReversed ? "md:flex-row-reverse" : ""}`}>
-                    <div className="w-full md:w-1/2">
-                      <motion.div
-                        className="w-7 h-0.5 bg-gold rounded mb-3"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: 28 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                      />
-                      <h3 className="text-foreground text-base md:text-lg font-bold tracking-[-0.01em] mb-2">{c.title}</h3>
-                      <p className="text-muted-foreground text-[14px] md:text-[15px] leading-[1.7] mb-2">{c.body}</p>
-                      <p className="text-gold text-xs">{c.result}</p>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                      <div className="rounded-lg h-[140px] md:h-[180px] overflow-hidden relative">
-                        <Image src={c.image} alt={c.title} fill className="object-cover rounded-lg" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" />
-                      </div>
-                    </div>
-                  </div>
-                </GlassCard>
-              </motion.article>
-            );
-          })}
-        </div>
+        <motion.div
+          variants={fadeUp}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+        >
+          {cards.map((c) => (
+            <EliteCard
+              key={c.title}
+              imageUrl={c.image}
+              title={c.title}
+              body={c.body}
+              result={c.result}
+            />
+          ))}
+        </motion.div>
       </motion.div>
     </section>
   );

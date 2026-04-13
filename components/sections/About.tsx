@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { AnimatedDock } from "@/components/ui/animated-dock";
 import { fadeUp, fadeLeft, fadeRight, stagger, staggerFast } from "@/lib/animations";
 import Image from "next/image";
 
@@ -130,6 +132,29 @@ export function About() {
                   </p>
                 </motion.div>
               ))}
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="mt-8">
+              <AnimatedDock
+                items={[
+                  {
+                    link: "https://www.instagram.com/agenciakwf/",
+                    target: "_blank",
+                    Icon: <Instagram size={22} />,
+                  },
+                  {
+                    link: "https://www.linkedin.com/company/agenciakwf/",
+                    target: "_blank",
+                    Icon: <Linkedin size={22} />,
+                  },
+                  {
+                    link: "https://www.youtube.com/@agenciakwf/",
+                    target: "_blank",
+                    Icon: <Youtube size={22} />,
+                  },
+                ]}
+                className="w-fit"
+              />
             </motion.div>
           </motion.div>
         </div>

@@ -3,10 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { MagneticButton } from "@/components/MagneticButton";
-import Image from "next/image";
 import Link from "next/link";
-import { trackCTAClick } from "@/lib/tracking";
 
 const links = [
   { label: "Como funciona", href: "/#como-funciona" },
@@ -21,59 +18,47 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 400);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <motion.nav
-      initial={{ y: -80 }}
+      initial={{ y: -60 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="fixed top-0 left-0 right-0 z-50 h-[60px] md:h-[68px] flex items-center transition-all duration-500"
+      className="fixed top-0 left-0 right-0 z-50 h-[50px] md:h-[56px] flex items-center transition-all duration-500"
       style={{
-        background: scrolled ? "rgba(15,15,15,0.98)" : "rgba(15,15,15,0.85)",
-        backdropFilter: "blur(20px)",
-        borderBottom: `1px solid rgba(255,255,255,${scrolled ? 0.1 : 0.04})`,
+        background: scrolled ? "rgba(15,15,15,0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.08)"
+          : "1px solid transparent",
         boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3)" : "none",
       }}
       aria-label="Navegação principal"
     >
-      <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
-        <Link href="/" className="shrink-0 group">
-          <Image
-            src="/images/logo-kwf.webp"
-            alt="Agência KWF"
-            className="h-12 w-auto"
-            width={48}
-            height={48}
-            priority
-          />
-        </Link>
-
-        <div className="hidden md:flex items-center gap-7">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-muted-foreground text-sm hover:text-foreground transition-colors relative group"
-            >
-              {l.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold rounded-full transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+      <div className="w-full max-w-[1100px] mx-auto px-5 md:px-10">
+        {/* Desktop: links aligned right */}
+        <div className="hidden md:flex items-center justify-end">
+          <div className="flex items-center gap-7">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-muted-foreground text-sm hover:text-foreground transition-colors relative group"
+              >
+                {l.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold rounded-full transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <MagneticButton
-            href="#diagnostico"
-            onClick={() => trackCTAClick('nav', 'PRÉ-DIAGNÓSTICO ESTRATÉGICO')}
-            className="hidden md:inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-5 py-2.5 hover:bg-green-hover transition-all shadow-[0_0_20px_rgba(19,150,87,0.15)] hover:shadow-[0_0_30px_rgba(19,150,87,0.3)]"
-          >
-            Pré-Diagnóstico Estratégico
-          </MagneticButton>
-          <button onClick={() => setOpen(!open)} className="md:hidden text-foreground" aria-label="Menu">
+        {/* Mobile: hamburger right */}
+        <div className="flex md:hidden items-center justify-end">
+          <button onClick={() => setOpen(!open)} className="text-foreground" aria-label="Menu">
             <AnimatePresence mode="wait">
               {open ? (
                 <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
@@ -89,6 +74,7 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -96,7 +82,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="absolute top-[60px] md:top-[68px] left-0 right-0 md:hidden flex flex-col gap-1 p-4"
+            className="md:hidden flex flex-col gap-1 p-4"
             style={{ background: "rgba(15,15,15,0.98)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
           >
             {links.map((l, i) => (
@@ -112,16 +98,6 @@ export function Navbar() {
                 {l.label}
               </motion.a>
             ))}
-            <motion.a
-              href="#diagnostico"
-              onClick={() => { setOpen(false); trackCTAClick('nav_mobile', 'PRÉ-DIAGNÓSTICO ESTRATÉGICO'); }}
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-[0.05em] px-5 py-3 hover:bg-green-hover transition-all"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              Pré-Diagnóstico Estratégico
-            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

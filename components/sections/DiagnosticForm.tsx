@@ -15,9 +15,7 @@ export function DiagnosticForm() {
         id="diagnostico"
         aria-label="Pré-diagnóstico estratégico"
         className="py-12 md:py-20 px-5 md:px-10 relative overflow-hidden"
-        style={{
-          background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(205,160,102,0.06) 0%, transparent 70%), hsl(var(--background))",
-        }}
+        style={{ background: "transparent" }}
       >
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           {Array.from({ length: 18 }).map((_, i) => {

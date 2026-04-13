@@ -33,7 +33,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" aria-label="Dúvidas frequentes" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section id="faq" aria-label="Dúvidas frequentes" className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[720px] mx-auto"
         initial="hidden"

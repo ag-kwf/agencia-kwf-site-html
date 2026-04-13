@@ -37,7 +37,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="processo" aria-label="Processo do Sistema KWF" className="py-8 md:py-12 px-5 md:px-10" style={{ background: "rgba(255,255,255,0.02)" }}>
+    <section id="processo" aria-label="Processo do Sistema KWF" className="py-8 md:py-12 px-5 md:px-10">
       <motion.div
         className="max-w-[900px] mx-auto"
         initial="hidden"
