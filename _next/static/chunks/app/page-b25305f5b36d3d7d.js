@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[974],{5997:(e,s,u)=>{"use strict";u.r(s),u.d(s,{default:()=>r});var t=u(2115),n=u(7260);function r(){let e=(0,n.useRouter)();return(0,t.useEffect)(()=>{e.replace("/diagnostico")},[e]),null}},9570:(e,s,u)=>{Promise.resolve().then(u.bind(u,5997))}},e=>{e.O(0,[441,255,358],()=>e(e.s=9570)),_N_E=e.O()}]);
