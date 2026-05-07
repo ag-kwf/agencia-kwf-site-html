@@ -1,0 +1,440 @@
+================================================================================
+  GUIA DE CRIAÇÃO E PUBLICAÇÃO DE ARTIGOS — AGÊNCIA KWF
+  Blog: agenciakwf.com.br/blog
+================================================================================
+
+Este guia cobre o passo a passo completo para criar artigos otimizados para
+SEO (Google) e GEO (IA: ChatGPT, Perplexity, Gemini, Claude).
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 1 — PASSO A PASSO DE CRIAÇÃO
+════════════════════════════════════════════════════════════════════════════════
+
+PASSO 1 — Defina o tema e a keyword principal
+──────────────────────────────────────────────
+  Antes de escrever, responda:
+  - Qual pergunta real o leitor faz no Google ou para uma IA?
+  - Existe volume de busca para isso?
+  - A KWF tem autoridade para responder esse tema?
+
+  Exemplos de boas keywords:
+  - "marketing para clínicas médicas"
+  - "como gerar leads para escritório de advocacia"
+  - "sistema de aquisição de clientes previsível"
+
+  Use ferramentas: Google Search Console, Ubersuggest, AnswerThePublic,
+  ou simplesmente observe o que clientes perguntam com frequência.
+
+
+PASSO 2 — Defina o slug (URL do artigo)
+────────────────────────────────────────
+  O slug é o endereço final: agenciakwf.com.br/blog/[slug]
+
+  Regras:
+  - Tudo em minúsculas
+  - Palavras separadas por hífen
+  - Incluir a keyword principal
+  - Sem acentos, sem caracteres especiais
+  - Entre 3 e 7 palavras
+
+  Exemplos:
+    ✓  marketing-para-clinicas-medicas
+    ✓  como-gerar-leads-escritorio-advocacia
+    ✗  MarketingParaClinicas
+    ✗  artigo-sobre-marketing-digital-para-empresas-de-servico-premium
+
+
+PASSO 3 — Prepare as imagens
+─────────────────────────────
+  Crie a pasta da imagem ANTES de escrever o artigo:
+    public/images/blog/[slug-do-artigo]/
+
+  Imagem de capa (obrigatória):
+  - Nome do arquivo: cover.webp
+  - Dimensões: 1200 × 630 px
+  - Tamanho máximo: 200 KB
+  - Formato: WebP (use squoosh.app para converter)
+
+  Imagens inline (opcional):
+  - Dimensões: 1100 × 600 px (largura total) ou 550 × 400 px (meia largura)
+  - Nome descritivo: grafico-roi-marketing.webp, infografico-funil.webp
+  - Tamanho máximo: 150 KB cada
+
+  Caminho final: /images/blog/[slug]/cover.webp
+
+
+PASSO 4 — Crie o arquivo MDX
+──────────────────────────────
+  Local: content/blog/[slug-do-artigo].mdx
+
+  Copie o template do PASSO 5 e preencha todos os campos.
+
+
+PASSO 5 — Preencha o frontmatter
+──────────────────────────────────
+  O frontmatter é o bloco entre --- no início do arquivo. Exemplo completo:
+
+  ---
+  title: "Como Gerar Leads Qualificados para Escritório de Advocacia"
+  description: "Escritórios de advocacia que usam marketing estruturado geram até 4x mais consultas. Veja as 5 estratégias que funcionam para captar clientes jurídicos."
+  date: "2026-05-15"
+  author: "Agência KWF"
+  category: "Marketing Jurídico"
+  tags: ["marketing para advocacia", "leads jurídicos", "marketing digital", "aquisição de clientes"]
+  image: "/images/blog/como-gerar-leads-escritorio-advocacia/cover.webp"
+  imageAlt: "Dashboard de marketing mostrando geração de leads para escritório de advocacia"
+  published: true
+  ---
+
+  Regras de cada campo:
+  - title     : inclua a keyword principal, entre 50 e 65 caracteres
+  - description: resposta direta em uma frase, máx 160 caracteres, inclua keyword
+  - date      : formato YYYY-MM-DD, data real de publicação
+  - author    : sempre "Agência KWF"
+  - category  : nome do nicho/tema (aparece acima do título no blog)
+  - tags      : de 3 a 6 tags, a primeira sempre é a keyword principal
+  - image     : caminho da imagem de capa (deixe "" se não tiver imagem ainda)
+  - imageAlt  : descreva o que está na imagem para acessibilidade e SEO
+  - published : true = publicado, false = rascunho (não aparece no blog)
+
+
+PASSO 6 — Escreva o conteúdo
+──────────────────────────────
+  Veja a Parte 2 deste guia para as boas práticas de estrutura e escrita.
+
+
+PASSO 7 — Publique (deploy)
+────────────────────────────
+  Após salvar o arquivo .mdx com published: true, execute no terminal:
+
+    git add -A
+    git commit -m "Blog: [título resumido do artigo]"
+    git push origin main
+
+  O deploy é automático (GitHub Actions → cPanel).
+  Tempo médio: 2 a 4 minutos.
+
+  Após o deploy, atualize public/llms.txt adicionando o link do novo artigo
+  na seção "Blog" para que IAs indexem o conteúdo.
+
+
+PASSO 8 — Valide o artigo publicado
+─────────────────────────────────────
+  Abra no browser e verifique:
+  1. Título correto na aba do navegador
+  2. Imagem de capa aparecendo
+  3. Conteúdo formatado corretamente
+  4. Links internos funcionando
+  5. CTA final apontando para /diagnostico
+
+  Valide o schema JSON-LD:
+    https://search.google.com/test/rich-results
+    (cole a URL do artigo)
+
+  Solicite indexação no Google Search Console:
+    search.google.com/search-console → Inspeção de URL → Solicitar indexação
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 2 — ESTRUTURA DO ARTIGO (SEO + GEO)
+════════════════════════════════════════════════════════════════════════════════
+
+ESTRUTURA RECOMENDADA
+──────────────────────
+
+  [FRONTMATTER]
+
+  [PARÁGRAFO DE ABERTURA — answer-first]
+  ↳ Resposta direta e completa logo na primeira frase.
+    IAs (ChatGPT, Perplexity) indexam os primeiros 200 tokens do conteúdo.
+    O Google usa o primeiro parágrafo para Featured Snippet.
+    Exemplo ruim : "Neste artigo vamos explorar o tema de marketing para..."
+    Exemplo bom  : "Marketing para escritórios de advocacia funciona quando..."
+
+  ## Por que [tema] é importante para [público]?
+  ↳ Expanda a resposta da abertura com contexto e dados.
+
+  ## [Problema ou dor principal]
+  ↳ Descreva o que acontece quando o problema não é resolvido.
+
+  ## As [N] estratégias/passos/formas de [resolver o problema]
+  ↳ Seção prática. Use listas, subseções (###), exemplos concretos.
+    Números específicos são melhores que generalizações:
+    "3 estratégias" > "algumas estratégias"
+    "aumenta 40%" > "aumenta bastante"
+
+  ### Estratégia 1: [nome]
+  ### Estratégia 2: [nome]
+  (...)
+
+  ## [Erro comum / O que evitar]
+  ↳ Contraste com o que funciona. Ajuda no ranqueamento.
+
+  ## Como medir resultados
+  ↳ Dê métricas e KPIs concretos. Artigos com dados ranqueiam melhor.
+
+  ## Perguntas frequentes
+  ↳ 4 a 6 perguntas reais que o leitor faria. Resposta objetiva abaixo de
+    cada pergunta. Esse bloco gera schema FAQPage e aumenta espaço no Google.
+
+  **[Nome da pergunta]**
+  Resposta em 2 a 4 linhas.
+
+  ## Conclusão
+  ↳ Resumo de 2 a 3 frases + CTA para /diagnostico.
+
+  ---
+
+  [Link do Diagnóstico ao final]
+
+
+COMPRIMENTO IDEAL
+──────────────────
+  - Mínimo: 1.200 palavras (artigos curtos não ranqueiam bem)
+  - Ideal : 1.500 a 2.500 palavras
+  - Máximo: 3.500 palavras (acima disso, divida em dois artigos)
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 3 — BOAS PRÁTICAS DE SEO
+════════════════════════════════════════════════════════════════════════════════
+
+TÍTULO (CAMPO title NO FRONTMATTER)
+─────────────────────────────────────
+  - Inclua a keyword principal preferencialmente no início
+  - Entre 50 e 65 caracteres (o Google trunca acima de 65)
+  - Use números quando possível: "5 Estratégias", "Como em 3 Passos"
+  - Evite clickbait vago: "Você não vai acreditar no que fazemos"
+
+  Template: [Keyword principal]: [Benefício ou como fazer] para [Público]
+  Exemplo : "Marketing para Clínicas: 5 Estratégias para Atrair Pacientes"
+
+
+DESCRIPTION (CAMPO description NO FRONTMATTER)
+────────────────────────────────────────────────
+  - Máximo 160 caracteres
+  - Deve conter a keyword principal
+  - Deve responder "o que o leitor vai ganhar lendo isso?"
+  - Termine com um dado ou promessa concreta
+
+  Exemplo:
+  "Clínicas que investem em marketing estruturado atraem até 4x mais pacientes.
+  Veja as 5 estratégias que realmente funcionam para serviços de saúde."
+
+
+HEADINGS (H1, H2, H3)
+───────────────────────
+  - H1: é o campo title do frontmatter (gerado automaticamente)
+  - H2 (##): use para as seções principais (4 a 7 por artigo)
+  - H3 (###): use para subseções dentro dos H2
+  - Inclua keywords secundárias nos H2 de forma natural
+  - Nunca pule níveis (H2 → H4 direto)
+
+
+LINKS INTERNOS
+───────────────
+  - Inclua pelo menos 2 links para outras páginas do site
+  - Link obrigatório: /diagnostico (CTA final)
+  - Se houver outros artigos relacionados, linke para eles
+  - Texto do link deve descrever o destino (evite "clique aqui")
+
+
+IMAGENS
+────────
+  - Toda imagem precisa de alt text descritivo
+  - Nome do arquivo deve ser descritivo (não use "imagem1.webp")
+  - Comprima sempre em WebP antes de subir
+  - Imagem de capa 1200×630px (proporção Open Graph)
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 4 — BOAS PRÁTICAS DE GEO (OTIMIZAÇÃO PARA IAs)
+════════════════════════════════════════════════════════════════════════════════
+
+GEO (Generative Engine Optimization) é a otimização para aparecer como fonte
+em respostas de ChatGPT, Perplexity, Google SGE, Claude e similares.
+
+PRINCÍPIO 1 — ANSWER-FIRST (resposta direta no início)
+────────────────────────────────────────────────────────
+  IAs extraem a resposta principal do início do conteúdo.
+  O primeiro parágrafo deve responder a pergunta do título completamente,
+  em 3 a 5 linhas. Detalhes vêm depois.
+
+  Ruim: "Marketing para negócios locais é um tema muito importante e neste
+  artigo vamos explorar seus diversos aspectos..."
+
+  Bom: "Marketing para negócios locais é essencial porque 97% dos consumidores
+  pesquisam no Google antes de escolher um fornecedor na sua cidade. Negócios
+  sem presença digital perdem clientes para concorrentes que aparecem primeiro."
+
+
+PRINCÍPIO 2 — FATOS COM DADOS E FONTES
+────────────────────────────────────────
+  IAs preferem citar conteúdo com dados verificáveis.
+  - Use números reais: percentuais, valores, prazos
+  - Cite fontes quando possível (BrightLocal, Google, IBGE, Sebrae)
+  - Dados próprios da KWF são muito valiosos: "+R$80M em faturamento", etc.
+
+
+PRINCÍPIO 3 — ENTIDADES CLARAS
+────────────────────────────────
+  IAs precisam entender quem, o quê, onde, quando e por quê.
+  - Mencione a Agência KWF pelo nome completo pelo menos uma vez
+  - Mencione localização quando relevante (Angra dos Reis, Rio de Janeiro, Brasil)
+  - Defina termos técnicos que você usa ("sistema de aquisição" = processo...)
+
+
+PRINCÍPIO 4 — PERGUNTAS E RESPOSTAS EXPLÍCITAS
+────────────────────────────────────────────────
+  A seção de FAQ é fundamental para GEO. Use exatamente o formato:
+
+  **Pergunta exata que o usuário faria?**
+  Resposta direta em 2 a 4 linhas. Resposta completa e autossuficiente —
+  a IA vai extrair isso sem o contexto do resto do artigo.
+
+  Ruim : "Veja a resposta acima."
+  Bom  : "Sim, o Google Business Profile é gratuito e pode ser configurado em
+  menos de 30 minutos. Acesse business.google.com com sua conta Google."
+
+
+PRINCÍPIO 5 — ESTRUTURA SEMÂNTICA CONSISTENTE
+───────────────────────────────────────────────
+  - Use H2 e H3 como perguntas ou afirmações claras
+  - Cada seção deve ter sentido sozinha (sem depender de contexto anterior)
+  - Listas com marcadores são mais fáceis de extrair do que parágrafos densos
+  - Tabelas funcionam bem para comparações e IAs conseguem processar bem
+
+
+PRINCÍPIO 6 — LINKAGEM PARA O SITE DA KWF
+───────────────────────────────────────────
+  Artigos que mencionam e linkam para agenciakwf.com.br reforçam a entidade
+  "Agência KWF" para os modelos de IA. Inclua pelo menos um link interno
+  por artigo, preferencialmente para /diagnostico.
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 5 — CHECKLIST FINAL ANTES DE PUBLICAR
+════════════════════════════════════════════════════════════════════════════════
+
+  FRONTMATTER
+  [ ] title preenchido com keyword e entre 50-65 caracteres
+  [ ] description preenchida e com máx 160 caracteres
+  [ ] date no formato YYYY-MM-DD
+  [ ] category preenchida
+  [ ] tags: mínimo 3, máximo 6
+  [ ] image apontando para arquivo que existe em public/images/blog/
+  [ ] imageAlt descritivo
+  [ ] published: true
+
+  CONTEÚDO
+  [ ] Primeiro parágrafo responde a pergunta do título (answer-first)
+  [ ] Mínimo 1.200 palavras
+  [ ] Pelo menos 1 dado/estatística com fonte ou origem
+  [ ] Seção de FAQ com 4+ perguntas e respostas completas
+  [ ] CTA final linkando para /diagnostico
+  [ ] Pelo menos 1 link interno para outra página do site
+
+  IMAGENS
+  [ ] Imagem de capa em /images/blog/[slug]/cover.webp (1200×630px, <200KB)
+  [ ] Todas as imagens em formato WebP
+  [ ] Todos os alt texts preenchidos
+  [ ] Nomes de arquivo descritivos (sem "imagem1", "foto", etc.)
+
+  DEPLOY
+  [ ] git add -A
+  [ ] git commit -m "Blog: [título resumido]"
+  [ ] git push origin main
+  [ ] Aguardar deploy (2-4 min) e verificar URL no browser
+  [ ] Validar schema em: search.google.com/test/rich-results
+  [ ] Solicitar indexação no Google Search Console
+  [ ] Adicionar link do artigo em public/llms.txt
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTE 6 — TEMPLATE PRONTO PARA COPIAR
+════════════════════════════════════════════════════════════════════════════════
+
+  Arquivo: content/blog/[slug-do-artigo].mdx
+
+  ─────────────────────────────────────────────────────────
+  ---
+  title: ""
+  description: ""
+  date: "YYYY-MM-DD"
+  author: "Agência KWF"
+  category: ""
+  tags: ["", "", ""]
+  image: "/images/blog/[slug]/cover.webp"
+  imageAlt: ""
+  published: true
+  ---
+
+  [Resposta direta à pergunta do título em 3-5 linhas. Inclua a keyword
+  principal. Esse é o parágrafo mais importante para SEO e GEO.]
+
+  ---
+
+  ## Por que [tema] é importante para [público]?
+
+  [Contexto e dados. Cite fontes quando possível.]
+
+  ## [Problema / situação atual]
+
+  [O que acontece sem a solução. Use exemplos reais.]
+
+  ## As [N] formas de [resolver o problema]
+
+  ### 1. [Nome da estratégia]
+
+  [Explicação prática. Como fazer. Exemplos concretos.]
+
+  ### 2. [Nome da estratégia]
+
+  [...]
+
+  ## [Erro comum ou o que evitar]
+
+  [Contraste com o que funciona.]
+
+  ## Como medir se está funcionando
+
+  [KPIs e métricas específicas.]
+
+  ## Perguntas frequentes
+
+  **[Pergunta real que o leitor faria?]**
+  [Resposta objetiva e autossuficiente em 2 a 4 linhas.]
+
+  **[Segunda pergunta?]**
+  [Resposta.]
+
+  **[Terceira pergunta?]**
+  [Resposta.]
+
+  **[Quarta pergunta?]**
+  [Resposta.]
+
+  ---
+
+  ## Conclusão
+
+  [Resumo em 2 linhas.] Se você quer entender qual é o maior gargalo de
+  aquisição do seu negócio hoje, o [Diagnóstico KWF](https://agenciakwf.com.br/diagnostico)
+  leva 10 minutos e entrega um mapa claro de onde o dinheiro está vazando.
+  ─────────────────────────────────────────────────────────
+
+
+════════════════════════════════════════════════════════════════════════════════
+  REFERÊNCIAS ÚTEIS
+════════════════════════════════════════════════════════════════════════════════
+
+  Converter imagens para WebP    : https://squoosh.app
+  Comprimir imagens              : https://tinypng.com
+  Pesquisa de keywords           : https://ubersuggest.com
+  Perguntas reais de usuários    : https://answerthepublic.com
+  Validar schema JSON-LD         : https://search.google.com/test/rich-results
+  Google Search Console          : https://search.google.com/search-console
+  Verificar tempo de leitura     : https://wordcounter.net
+
+================================================================================
