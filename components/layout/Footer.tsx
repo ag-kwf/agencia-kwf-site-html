@@ -31,11 +31,12 @@ export function Footer() {
               <p className="text-foreground text-sm font-semibold mb-2">Navegação</p>
               <div className="flex flex-col gap-1.5">
                 {[
-                  { label: "Como funciona", href: "/#como-funciona" },
-                  { label: "Resultados", href: "/#resultados" },
+                  { label: "Diagnóstico", href: "/diagnostico" },
+                  { label: "Como funciona", href: "/diagnostico#como-funciona" },
+                  { label: "Resultados", href: "/diagnostico#resultados" },
                   { label: "Blog", href: "/blog" },
-                  { label: "Sobre", href: "/#sobre" },
-                  { label: "Dúvidas", href: "/#faq" },
+                  { label: "Sobre", href: "/diagnostico#sobre" },
+                  { label: "Dúvidas", href: "/diagnostico#faq" },
                 ].map((l) => (
                   <Link
                     key={l.href}
@@ -51,7 +52,7 @@ export function Footer() {
             <div>
               <p className="text-foreground text-sm font-semibold mb-2">Ação</p>
               <a
-                href="#diagnostico"
+                href="/diagnostico#diagnostico"
                 onClick={() => trackCTAClick('footer', 'Pré-Diagnóstico Estratégico')}
                 className="text-accent text-sm font-semibold hover:underline"
               >

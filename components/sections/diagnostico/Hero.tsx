@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { MagneticButton } from "@/components/MagneticButton";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 import Image from "next/image";
 import { trackCTAClick } from "@/lib/tracking";
 import { fadeUp, stagger } from "@/lib/animations";

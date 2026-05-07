@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/animations";
-import { ButterflyFunnel } from "@/components/ButterflyFunnel";
+import { ButterflyFunnel } from "@/components/ui/butterfly-funnel";
 
 export function Results() {
   return (

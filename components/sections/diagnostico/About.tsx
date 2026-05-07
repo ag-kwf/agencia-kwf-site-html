@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { AnimatedDock } from "@/components/ui/animated-dock";
 import { fadeUp, fadeLeft, fadeRight, stagger, staggerFast } from "@/lib/animations";
 import Image from "next/image";

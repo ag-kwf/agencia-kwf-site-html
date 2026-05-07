@@ -13,6 +13,9 @@
   # Redirect to HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Temporary redirect root to /diagnostico
+  RewriteRule ^$ /diagnostico/ [R=302,L]
 </IfModule>
 
 # Custom 404 page

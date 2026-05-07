@@ -1,0 +1,10 @@
+export { Hero } from './Hero';
+export { Problems } from './Problems';
+export { SocialProof } from './SocialProof';
+export { BeforeAfter } from './BeforeAfter';
+export { Results } from './Results';
+export { HowItWorks } from './HowItWorks';
+export { DiagnosticForm } from './DiagnosticForm';
+export { FAQ } from './FAQ';
+export { About } from './About';
+export { LogoCarousel } from './LogoCarousel';

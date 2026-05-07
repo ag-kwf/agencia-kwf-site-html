@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { SchemaMarkup } from '@/components/schema-markup';
-import { GTMHead, GTMBody } from '@/components/gtm';
-import { UTMCapture } from '@/components/utm-capture';
-import { ScrollTracker } from '@/components/scroll-tracker';
-import { Navbar } from '@/components/sections/Navbar';
-import { Footer } from '@/components/sections/Footer';
+import { SchemaMarkup } from '@/components/providers/schema-markup';
+import { GTMHead, GTMBody } from '@/components/providers/gtm';
+import { UTMCapture } from '@/components/providers/utm-capture';
+import { ScrollTracker } from '@/components/providers/scroll-tracker';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 const inter = Inter({
   subsets: ['latin'],
